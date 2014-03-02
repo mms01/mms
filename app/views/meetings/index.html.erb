@@ -1,29 +1,27 @@
 <h1>Listing meetings</h1>
 
-<table>
+<table rules="rows">
   <tr>
-    <th>Project</th>
-    <th>Title</th>
-    <th>Purpose</th>
-    <th>Host user</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Title&nbsp;&nbsp;</th>
+    <th>Project&nbsp;&nbsp;</th>
+    <th>Purpose&nbsp;&nbsp;</th>
+    <th>Host user&nbsp;&nbsp</th>
+    <th colspan="2">Menu</th>
   </tr>
 
 <% @meetings.each do |meeting| %>
   <tr>
-    <td><%= meeting.project_id %></td>
-    <td><%= meeting.title %></td>
-    <td><%= meeting.purpose %></td>
-    <td><%= meeting.host_user_id %></td>
-    <td><%= link_to 'Show', meeting %></td>
-    <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-    <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td height="30"><%= link_to meeting.title, meeting %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td height="30"><%= meeting.project_id %>&nbsp&nbsp;&nbsp;&nbsp</td>
+    <td height="30"><%= meeting.purpose %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td height="30"><%= meeting.host_user_id %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td height="30"><%= link_to 'Edit', edit_meeting_path(meeting) %>&nbsp;&nbsp;</td>
+    <td height="30"><%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Meeting', new_meeting_path %>
+<%= link_to 'Create New Meeting', new_meeting_path %> |
+<a href="../../">Home</a>
