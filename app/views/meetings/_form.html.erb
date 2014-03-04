@@ -20,12 +20,29 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :purpose %><br />
-    <%= f.text_field :purpose %>
-  </div>
-  <div class="field">
     <%= f.label :host_user_id %><br />
     <%= f.text_field :host_user_id %>
+  </div>
+  <div class="field">
+    <table>
+      <tr>
+        <td><%= f.label :date %></td>
+        <td><%= f.label :start %></td>
+        <td><%= f.label :end %></td>
+      </tr>
+      <tr>
+        <td><%= f.text_field :date, :size => "20px" %></td>
+        <td><%= f.select :start_time, [["09:00", "9:00"], ["10:00", "10:00"], ["11:00", "11:00"], ["12:00", "12:00"]],  :include_blank => true %></td>
+        <td><%= f.select :end_time, [["10:00", "10:00"], ["11:00", "11:00"], ["12:00", "12:00"], ["13:00", "13:00"]],  :include_blank => true %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="field">
+    <%= f.label :purpose %><br />
+    <%= f.text_area :purpose %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :create_user_id, :value => "test_user" %>
   </div>
   <div class="actions">
     <%= f.submit %>
