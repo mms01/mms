@@ -52,9 +52,10 @@ test:
 production:
   adapter: postgresql
   encoding: utf8
-  database: mms_production
+  database: de7o1cjlpqfta1
   pool: 5
-  username: postgres
-  password: postgres
+  username: oirlmykzcsvsay
+  host: ec2-54-197-241-82.compute-1.amazonaws.com
+  password: fezb1JId6je2cetxgUpj6T09c8
   port: 5432
   

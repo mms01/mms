@@ -41,7 +41,7 @@ gem 'jquery-rails'
 gem 'devise'
 
 group :development do
-  gem 'pg'
+  gem 'sqlite3'
 end
 
 group :production do
