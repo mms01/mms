@@ -53,7 +53,6 @@ production:
   adapter: postgresql
   encoding: utf8
   database: de7o1cjlpqfta1
-  pool: 5
   username: oirlmykzcsvsay
   host: ec2-54-197-241-82.compute-1.amazonaws.com
   password: fezb1JId6je2cetxgUpj6T09c8
