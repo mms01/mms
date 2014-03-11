@@ -1,14 +1,27 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
-  def index
-    @projects = Project.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @projects }
-    end
+  # プロジェクト一覧
+  def index
+
+#    @projects = Project.all
+
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json { render json: @projects }
+#    end
+
+    @projects = Project.order("id")
+
   end
+
+  # 検索
+  def search
+      @projects = Project.search(params[:q])
+      render "index"
+  end
+
 
   # GET /projects/1
   # GET /projects/1.json
@@ -80,4 +93,7 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
 end
