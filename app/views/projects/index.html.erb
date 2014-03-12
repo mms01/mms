@@ -1,21 +1,37 @@
-<h1>Listing projects</h1>
+<% @page_title = "Projects list" %>
 
+<h1><%= @page_title %></h1>
+
+
+
+
+
+<% if @projects.present? %>
 <table rules="rows">
   <tr>
     <th>Name</th>
+    <th>start_date</th>
     <th colspan="2">Menu</th>
   </tr>
 
 <% @projects.each do |project| %>
   <tr>
-    <td height="30"><%= link_to project.name, project %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td height="30"><%= link_to 'Edit', edit_project_path(project) %>&nbsp;&nbsp;</td>
-    <td height="30"><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     <td height="30", width="100"><%= link_to project.name, project %></td>
+     <td height="30", width="100"><%= project.start_date  %></td>
+    <td>
+      <%= link_to 'Edit', edit_project_path(project) %> |
+      <%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
   </tr>
 <% end %>
 </table>
 
+<% else %>
+<p>プロジェクト情報がありません。</p>
+<% end %>
+
 <br />
 
 <%= link_to 'Create New Project', new_project_path %> |
+<%= link_to 'Show Projects', projects_path %> |
 <a href="../../">Home</a>

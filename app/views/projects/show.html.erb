@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<% @page_title = "プロジェクトの詳細" %>
+<h1><%= @page_title  %></h1>
+
 <p>
   <b>Name:</b>
   <%= @project.name %>
@@ -8,3 +11,27 @@
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+<table class="attr">
+  <tr>
+    <th width="150">ID</th>
+    <td><%= @project.id %></td>
+  </tr>
+  <tr>
+    <th>プロジェクト名</th>
+    <td><%= @project.name %></td>
+  </tr>
+  <tr>
+    <th>プロジェクト開始日</th>
+    <td><%= @project.start_date %></td>
+  </tr>
+  <tr>
+    <th>プロジェクト終了日</th>
+    <td><%= @project.end_date %></td>
+  </tr>
+  <tr>
+    <th>プロジェクト管理者</th>
+    <td><%= @project.manager_id %></td>
+  </tr>
+</table>
+
