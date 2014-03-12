@@ -1,4 +1,7 @@
 Mms::Application.routes.draw do
+  resources :minutes
+
+
   devise_for :users
 
   resources :meetings
