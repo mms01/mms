@@ -1,25 +1,50 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Project:</b>
+  <b>プロジェクト:</b>
   <%= @meeting.project_id %>
 </p>
 
 <p>
-  <b>Title:</b>
+  <b>議題:</b>
   <%= @meeting.title %>
 </p>
 
 <p>
-  <b>Purpose:</b>
+  <b>目的:</b>
   <%= @meeting.purpose %>
 </p>
 
 <p>
-  <b>Host user:</b>
+  <b>開催日:</b>
+  <%= @meeting.date %>
+</p>
+
+<p>
+  <b>開始時間:</b>
+  <%= @meeting.start_time %>
+</p>
+
+<p>
+  <b>終了予定時間:</b>
+  <%= @meeting.end_time %>
+</p>
+
+<p>
+  <b>開催場所:</b>
+  <%= @meeting.place %>
+</p>
+
+<p>
+  <b>主催者:</b>
   <%= @meeting.host_user_id %>
 </p>
 
+<p>
+  <b>更新日時:</b>
+  <%= @meeting.update_date %>
+</p>
 
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-<%= link_to 'Back', meetings_path %>
+
+<%= link_to '[編集]', edit_meeting_path(@meeting) %> |
+<%= link_to '[戻る]', meetings_path %>
