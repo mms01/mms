@@ -16,14 +16,17 @@ ActiveRecord::Schema.define(:version => 20140312142549) do
   create_table "meetings", :force => true do |t|
     t.string   "project_id"
     t.string   "title"
-    t.string   "purpose"
+    t.text     "purpose"
     t.string   "host_user_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.string   "date"
-    t.string   "start_time"
-    t.string   "end_time"
     t.string   "create_user_id"
+    t.string   "place"
+    t.datetime "update_date"
+    t.boolean  "available"
+    t.date     "meeting_date"
+    t.time     "start_time"
+    t.time     "end_time"
   end
 
   create_table "minutes", :force => true do |t|
