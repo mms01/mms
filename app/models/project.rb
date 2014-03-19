@@ -1,14 +1,12 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name
-
-  class << self
-    def search(query)
-      rel = order("id")
-      if query.present?
-        rel = rel.where("name LIKE ?",
-                        "%#{query}%", "%#{query}%")
-      end
-      rel
-    end
-  end
+  attr_accessible :name,
+                  :created_at,
+                  :updated_at,
+                  :manager_id,
+                  :start_date, 
+                  :end_date, 
+                  :create_user_id,
+                  :sts,
+                  :atached,
+                  :purpose
 end

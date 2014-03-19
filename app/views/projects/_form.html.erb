@@ -12,9 +12,43 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, "プロジェクト名" %><br />
     <%= f.text_field :name %>
   </div>
+
+  <div class="field">
+    <%= f.label :start_date, "開始日" %><br />
+    <%= f.date_select :start_date,
+             start_year: 2001, end_year: 2100,
+             use_month_numbers: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date, "終了日" %><br />
+    <%= f.date_select :end_date,
+             start_year: 2001, end_year: 2100,
+             use_month_numbers: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :manager_id, "管理者" %><br />
+    <%= f.text_field :manager_id %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :purpose, "目的" %><br />
+    <%= f.text_field :purpose %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sts, "ステータス" %><br />
+    <%= f.text_field :sts %>
+  </div>
+
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

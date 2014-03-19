@@ -2,15 +2,14 @@
 
 <h1><%= @page_title %></h1>
 
-
-
-
-
 <% if @projects.present? %>
 <table rules="rows">
   <tr>
-    <th>Name</th>
-    <th>start_date</th>
+    <th>プロジェクト名</th>
+    <th>開始日</th>
+    <th>終了日</th>
+    <th>管理者</th>
+    <th>ステータス</th>
     <th colspan="2">Menu</th>
   </tr>
 
@@ -18,9 +17,12 @@
   <tr>
      <td height="30", width="100"><%= link_to project.name, project %></td>
      <td height="30", width="100"><%= project.start_date  %></td>
-    <td>
-      <%= link_to 'Edit', edit_project_path(project) %> |
-      <%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+     <td height="30", width="100"><%= project.end_date  %></td>
+     <td height="30", width="100"><%= project.manager_id  %></td>
+     <td height="30", width="100"><%= project.sts  %></td>
+     <td>
+       <%= link_to '編集', edit_project_path(project) %> |
+       <%= link_to '削除', project, method: :delete, data: { confirm: 'Are you sure?' } %>
     </td>
   </tr>
 <% end %>

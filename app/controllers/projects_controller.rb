@@ -4,27 +4,27 @@ class ProjectsController < ApplicationController
 
   # プロジェクト一覧
   def index
+   @projects = Project.order("id")
 
-#    @projects = Project.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @projects }
+    end
 
-#    respond_to do |format|
-#      format.html # index.html.erb
-#      format.json { render json: @projects }
-#    end
-
-    @projects = Project.order("id")
+#    @projects = Project.order("id")
 
   end
 
   # 検索
-  def search
-      @projects = Project.search(params[:q])
-      render "index"
-  end
+#  def search
+#      @projects = Project.search(params[:q])
+#      render "index"
+#  end
 
 
   # GET /projects/1
   # GET /projects/1.json
+
   def show
     @project = Project.find(params[:id])
 
