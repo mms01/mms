@@ -16,3 +16,6 @@
 
 # Ignore pg
 /config/database.yml
+
+# Ignore pg
+/README.rdoc

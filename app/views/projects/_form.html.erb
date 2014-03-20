@@ -38,12 +38,13 @@
 
   <div class="field">
     <%= f.label :purpose, "目的" %><br />
-    <%= f.text_field :purpose %>
+    <%= f.text_area :purpose %>
   </div>
 
   <div class="field">
+    <% options = ["計画中", "進行中", "完了", "保留"] %>
     <%= f.label :sts, "ステータス" %><br />
-    <%= f.text_field :sts %>
+    <%= f.select :sts, options %>
   </div>
 
 
