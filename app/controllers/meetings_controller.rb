@@ -48,7 +48,7 @@ class MeetingsController < ApplicationController
 
     respond_to do |format|
       if @meeting.save
-        format.html { redirect_to @meeting, notice: '登録 Finish!' }
+        format.html { redirect_to @meeting, notice: '作成が完了しました！' }
         format.json { render json: @meeting, status: :created, location: @meeting }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ class MeetingsController < ApplicationController
 
     respond_to do |format|
       if @meeting.update_attributes(params[:meeting])
-        format.html { redirect_to @meeting, notice: '更新 Finish!' }
+        format.html { redirect_to @meeting, notice: '更新が完了しました！' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

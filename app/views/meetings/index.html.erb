@@ -1,35 +1,33 @@
-<h1>Listing meetings</h1>
+<h1>ミーティング一覧</h1>
 
 <table rules="rows">
   <tr>
+    <th>ID&nbsp;&nbsp;</th>
     <th>プロジェクト&nbsp;&nbsp;</th>
     <th>議題&nbsp;&nbsp;</th>
-    <th>目的&nbsp;&nbsp;</th>
     <th>開催日&nbsp;&nbsp;</th>
     <th>開始時間&nbsp;&nbsp;</th>
-    <th>終了予定時間&nbsp;&nbsp;</th>
-    <th>開催場所&nbsp;&nbsp</th>
+    <th>ステータス&nbsp;&nbsp;</th>
     <th>主催者&nbsp;&nbsp</th>
     <th colspan="2">Menu</th>
   </tr>
 
 <% @meetings.each do |meeting| %>
   <tr>
+    <td height="30"><%= meeting.id %>&nbsp&nbsp;&nbsp;&nbsp</td>
     <td height="30"><%= meeting.project_id %>&nbsp&nbsp;&nbsp;&nbsp</td>
     <td height="30"><%= link_to meeting.title, meeting %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td height="30"><%= meeting.purpose %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.meeting_date %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.start_time %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.end_time %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td height="30"><%= meeting.place %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.host_user_id %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td height="30"><%= link_to 'Edit', edit_meeting_path(meeting) %>&nbsp;&nbsp;</td>
-    <td height="30"><%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td height="30"><%= link_to '編集', edit_meeting_path(meeting) %>&nbsp;&nbsp;</td>
+    <td height="30"><%= link_to '削除', meeting, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Create New Meeting', new_meeting_path %> |
-<a href="../../">[Home]</a>
+<%= link_to '新規作成', new_meeting_path %> |
+<a href="../../">メニュー</a>

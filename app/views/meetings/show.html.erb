@@ -1,4 +1,11 @@
+<h1>ミーティング詳細</h1>
+
 <p id="notice"><%= notice %></p>
+
+<p>
+  <b>ID:</b>
+  <%= @meeting.id %>
+</p>
 
 <p>
   <b>プロジェクト:</b>
@@ -17,7 +24,7 @@
 
 <p>
   <b>開催日:</b>
-  <%= @meeting.date %>
+  <%= @meeting.meeting_date %>
 </p>
 
 <p>
@@ -38,6 +45,19 @@
 <p>
   <b>主催者:</b>
   <%= @meeting.host_user_id %>
+</p>
+
+<p>
+  <b>対象者:（そのうち対応）</b>
+</p>
+
+<p>
+  <b>ステータス:（そのうち対応）</b>
+</p>
+
+<p>
+  <b>登録者:</b>
+  <%= @meeting.create_user_id %>
 </p>
 
 <p>
