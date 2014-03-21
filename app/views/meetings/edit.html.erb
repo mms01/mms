@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
+<%= link_to '議事録', url_for(:controller => "minutes", :action => "show", :id => @meeting.id) %> |
 <%= link_to '詳細情報参照', @meeting %> |
 <%= link_to '戻る', meetings_path %>

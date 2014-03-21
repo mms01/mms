@@ -13,12 +13,21 @@ class MinutesController < ApplicationController
   # GET /minutes/1
   # GET /minutes/1.json
   def show
-    @minute = Minute.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @minute }
+    fstr = params[:id]
+    @datas = []
+    @datas = Minute.where("id='" + fstr + "'")
+    
+    if @datas.exists? then
+      @minute = Minute.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @minute }
+      end
+    else
+        redirect_to :action => "new", :params => {'id' => fstr}
     end
+
+
   end
 
   # GET /minutes/new
