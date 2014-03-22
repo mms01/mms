@@ -1,5 +1,6 @@
-<h1><%= @title %></h1>
 <p><%= @msg %></p>
+<h1><%= @title %></h1>
+<p><%= @info %></p>
 <%= form_for(@meeting, :url => {:action => 'new'}) do |f| %>
 
   <% if @meeting.errors.any? %>
@@ -17,11 +18,14 @@
   <table>
     <tr>
       <th>プロジェクト</th>
-      <td><%= select_tag 'meeting[project_id]', options_from_collection_for_select(@projects, :id, :name) %></td>
+      <td>
+        <%= select_tag 'meeting[project_id]', options_from_collection_for_select(@projects, :id, :name) %>
+      </td>
     </tr>
     <tr>
       <th><%= f.label :title, '議題' %></th>
       <td><%= f.text_field :title %></td>
+      
     </tr>
     <tr>
       <th><%= f.label :purpose, '目的' %></th>

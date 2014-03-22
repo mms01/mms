@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class Meeting < ActiveRecord::Base
   attr_accessible :id,
                   :project_id, 
@@ -12,5 +14,12 @@ class Meeting < ActiveRecord::Base
                   :start_time, 
                   :end_time,
                   :status
+  
+  validates :title,
+    :presence => { :message => '議題は必ず入力してください。' }
+    
   belongs_to :project
+  
+
+
 end

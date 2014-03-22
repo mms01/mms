@@ -5,7 +5,8 @@ class MeetingsController < ApplicationController
   # GET /meetings.json
   def index
       
-    @meetings = Meeting.all
+    #@meetings = Meeting.all
+    @meetings = Meeting.where("id  > 0").order("meeting_date DESC").order("start_time DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,11 +29,16 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   # GET /meetings/new.json
   def new
+    @msg = ""
     @title = "ミーティングの登録"
-    @msg = "新規にミーティングを登録します。"
+    @info = "新規にミーティングを登録します。"
     @meeting = Meeting.new
     if request.post? then
-      Meeting.new(params[:meeting]).save
+      @meeting = Meeting.new(params[:meeting])
+      @flg = !@meeting.save
+      if !@flg then
+        @msg = "登録が完了しました。"
+      end
     end
     @datas = Meeting.where("id  > 0").order("name ASC")
     @projects = Project.where("id  > 0").order("name ASC")
@@ -48,8 +54,9 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1/edit
   def edit
+    @msg = ""
     @title = "ミーティングの編集"
-    @msg = "ミーティングを編集します。"
+    @info = "ミーティングを編集します。"
     @meeting = Meeting.find(params[:id])
 
   end

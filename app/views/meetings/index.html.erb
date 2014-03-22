@@ -18,7 +18,7 @@
     <td height="30"><%= meeting.project.name %>&nbsp&nbsp;&nbsp;&nbsp</td>
     <td height="30"><%= link_to meeting.title, meeting %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.meeting_date %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td height="30"><%= meeting.start_time %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td height="30"><%= meeting.start_time.strftime("%H:%M") %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.status %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.host_user_id %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= link_to '削除', meeting, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>

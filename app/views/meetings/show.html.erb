@@ -28,13 +28,13 @@
 </p>
 
 <p>
-  <b>開始時間:</b>
-  <%= @meeting.start_time %>
+  <b>開始予定時間:</b>
+  <%= @meeting.start_time.strftime("%H:%M") %>
 </p>
 
 <p>
   <b>終了予定時間:</b>
-  <%= @meeting.end_time %>
+  <%= @meeting.end_time.strftime("%H:%M") %>
 </p>
 
 <p>
