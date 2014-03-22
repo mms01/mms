@@ -5,6 +5,7 @@ Mms::Application.routes.draw do
   devise_for :users
 
   resources :meetings
+  get "meeting/delete"
 
 
   resources :projects

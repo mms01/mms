@@ -11,10 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140322022554) do
+ActiveRecord::Schema.define(:version => 20140322062813) do
 
   create_table "meetings", :force => true do |t|
-    t.string   "project_id"
     t.string   "title"
     t.text     "purpose"
     t.string   "host_user_id"
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20140322022554) do
     t.time     "start_time"
     t.time     "end_time"
     t.string   "status"
+    t.integer  "project_id"
   end
 
   create_table "minutes", :force => true do |t|

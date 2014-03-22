@@ -28,17 +28,30 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   # GET /meetings/new.json
   def new
+    @title = "ミーティングの登録"
+    @msg = "新規にミーティングを登録します。"
     @meeting = Meeting.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @meeting }
+    if request.post? then
+      Meeting.new(params[:meeting]).save
     end
+    @datas = Meeting.where("id  > 0").order("name ASC")
+    @projects = Project.where("id  > 0").order("name ASC")
+
+
+#    @meeting = Meeting.new
+#
+#    respond_to do |format|
+#      format.html # new.html.erb
+#      format.json { render json: @meeting }
+#    end
   end
 
   # GET /meetings/1/edit
   def edit
+    @title = "ミーティングの編集"
+    @msg = "ミーティングを編集します。"
     @meeting = Meeting.find(params[:id])
+
   end
 
   # POST /meetings
@@ -77,6 +90,7 @@ class MeetingsController < ApplicationController
   # DELETE /meetings/1.json
   def destroy
     @meeting = Meeting.find(params[:id])
+    if !checkme? @meeting then return end
     @meeting.destroy
 
     respond_to do |format|
@@ -85,5 +99,11 @@ class MeetingsController < ApplicationController
     end
   end
   
+  # DELETE
+  def delete
+    obj = Meeting.find(params[:id])
+    obj.destroy
+    redirect_to :action => "index"
+  end
   
 end

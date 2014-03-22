@@ -68,4 +68,5 @@
 
 
 <%= link_to '[編集]', edit_meeting_path(@meeting) %> |
+<a href="javascript:void(0)" onclick="doDelete(<%=  @meeting.id %>);">[削除]</a> |
 <%= link_to '[戻る]', meetings_path %>

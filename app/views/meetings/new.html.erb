@@ -1,5 +1,64 @@
-<h1>ミーティングの新規作成</h1>
+<h1><%= @title %></h1>
+<p><%= @msg %></p>
+<%= form_for(@meeting, :url => {:action => 'new'}) do |f| %>
 
-<%= render 'form' %>
+  <% if @meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
 
+      <ul>
+      <% @meeting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <table>
+    <tr>
+      <th>プロジェクト</th>
+      <td><%= select_tag 'meeting[project_id]', options_from_collection_for_select(@projects, :id, :name) %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :title, '議題' %></th>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :purpose, '目的' %></th>
+      <td><%= f.text_area :purpose %></td>
+    </tr>
+      <tr>
+        <td>開催日: </td>
+        <td><%= f.date_select :meeting_date, :use_month_numbers => true %></td>
+      </tr>
+      <tr>
+        <td>開始時間: </td>
+        <td><%= f.time_select :start_time, :use_month_numbers => true %></td>
+      </tr>
+      <tr>
+        <td>終了時間: </td>
+        <td><%= f.time_select :end_time, :use_month_numbers => true %></td>
+      </tr>
+    <tr>
+      <th><%= f.label :place, '開催場所' %></th>
+      <td><%= f.text_field :place %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :host_user_id, '主催者' %></th>
+      <td><%= f.text_field :host_user_id %></td>
+    </tr>
+    <tr>
+      <% options = ["開催待ち", "議事録作成待ち", "議事録確認依頼中", "完了"] %>
+      <th><%= f.label :status, 'ステータス' %></th>
+      <td><%= f.select :status, options %></td>
+    </tr>
+  </table>
+  <div class="field">
+    <%= f.hidden_field :create_user_id, :value => current_user.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit "作成" %>
+  </div>
+
+<% end %>
 <%= link_to '戻る', meetings_path %>

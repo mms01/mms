@@ -9,7 +9,7 @@
     <th>開始時間&nbsp;&nbsp;</th>
     <th>ステータス&nbsp;&nbsp;</th>
     <th>主催者&nbsp;&nbsp</th>
-    <th colspan="3">Menu</th>
+    <th colspan="1">Menu</th>
   </tr>
 
 <% @meetings.each do |meeting| %>
@@ -21,7 +21,6 @@
     <td height="30"><%= meeting.start_time %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.status %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.host_user_id %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td height="30"><%= link_to '編集', edit_meeting_path(meeting) %>&nbsp;&nbsp;</td>
     <td height="30"><%= link_to '削除', meeting, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
   </tr>
 <% end %>
