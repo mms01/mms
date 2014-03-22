@@ -47,6 +47,11 @@
     <%= f.text_field :host_user_id %>
   </div>
   <div class="field">
+    <% options = ["開催待ち", "議事録作成待ち", "議事録確認依頼中", "完了"] %>
+    <%= f.label :status, "ステータス" %><br />
+    <%= f.select :status, options %>
+  </div>
+  <div class="field">
     <%= f.hidden_field :create_user_id, :value => current_user.id %>
   </div>
   <div class="actions">

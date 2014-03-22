@@ -10,5 +10,7 @@ class Meeting < ActiveRecord::Base
                   :available,
                   :meeting_date,
                   :start_time, 
-                  :end_time
+                  :end_time,
+                  :status
+  belongs_to :project
 end

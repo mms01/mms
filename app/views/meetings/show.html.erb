@@ -9,7 +9,7 @@
 
 <p>
   <b>プロジェクト:</b>
-  <%= @meeting.project_id %>
+  <%= @meeting.project.name %>
 </p>
 
 <p>
@@ -52,7 +52,8 @@
 </p>
 
 <p>
-  <b>ステータス:（そのうち対応）</b>
+  <b>ステータス:</b>
+  <%= @meeting.status %>
 </p>
 
 <p>
