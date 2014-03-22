@@ -1,5 +1,12 @@
 <h1>ミーティング一覧</h1>
 
+
+
+
+
+
+
+
 <table rules="rows">
   <tr>
     <th>ID&nbsp;&nbsp;</th>
@@ -21,7 +28,7 @@
     <td height="30"><%= meeting.start_time.strftime("%H:%M") %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.status %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td height="30"><%= meeting.host_user_id %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td height="30"><%= link_to '削除', meeting, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
+    <td height="30"><a href="javascript:void(0)" onclick="doDelete(<%=  meeting.id %>);">削除(新)</a></td>
   </tr>
 <% end %>
 </table>
@@ -30,3 +37,6 @@
 
 <%= link_to '新規作成', new_meeting_path %> |
 <a href="../../">メニュー</a>
+
+<%= javascript_include_tag 'meetings' %>
+

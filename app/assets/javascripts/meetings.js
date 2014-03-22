@@ -1,15 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
-# coding: utf-8
 
 function doDelete(id) {
-  if (confirm("‚±‚Ìƒ~[ƒeƒBƒ“ƒO‚ğíœ‚µ‚Ü‚·‚©H")) {
-    location.href = /meeting/delete?id=" + id
+  if (confirm("ãƒŸãƒ¼ãƒ†ã‚£ãƒ³ã‚°" + id + "ã‚’å‰Šé™¤ã—ã¾ã™ã‹ï¼Ÿ")) {
+    location.href = "/meetings/delete?id=" + id
   }
-
-
 }
 
 
