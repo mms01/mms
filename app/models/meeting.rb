@@ -13,13 +13,14 @@ class Meeting < ActiveRecord::Base
                   :meeting_date,
                   :start_time, 
                   :end_time,
-                  :status
+                  :status,
+                  :update_user_id
   
   validates :title,
     :presence => { :message => '議題は必ず入力してください。' }
     
   belongs_to :project
-  
+  belongs_to :user,     :foreign_key => 'host_user_id'
 
 
 end

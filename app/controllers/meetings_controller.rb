@@ -6,7 +6,8 @@ class MeetingsController < ApplicationController
   def index
       
     #@meetings = Meeting.all
-    @meetings = Meeting.where("id  > 0").order("meeting_date DESC").order("start_time DESC")
+    #@meetings = Meeting.where("id  > 0").order("meeting_date DESC").order("start_time DESC")
+    @meetings = Meeting.where("meetings.id  > 0").joins("JOIN users ON users.id = meetings.user_id").order("meeting_date DESC").order("start_time DESC")
 
     respond_to do |format|
       format.html # index.html.erb
