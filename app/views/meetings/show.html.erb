@@ -44,7 +44,7 @@
 
 <p>
   <b>主催者:</b>
-  <%= @meeting.host_user_id %>
+  <%= @meeting.user.email %>
 </p>
 
 <p>
@@ -63,7 +63,12 @@
 
 <p>
   <b>更新日時:</b>
-  <%= @meeting.update_date %>
+  <%= @meeting.update_date.strftime("%Y/%m/%d %H:%M") %>
+</p>
+
+<p>
+  <b>更新者:</b>
+  <%= @meeting.update_user_id %>
 </p>
 
 

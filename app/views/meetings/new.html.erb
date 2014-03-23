@@ -48,8 +48,10 @@
       <td><%= f.text_field :place %></td>
     </tr>
     <tr>
-      <th><%= f.label :host_user_id, '主催者' %></th>
-      <td><%= f.text_field :host_user_id %></td>
+      <th>主催者</th>
+      <td>
+        <%= select_tag 'meeting[host_user_id]', options_from_collection_for_select(@users, :id, :email) %>
+      </td> 
     </tr>
     <tr>
       <% options = ["開催待ち", "議事録作成待ち", "議事録確認依頼中", "完了"] %>
@@ -58,8 +60,18 @@
     </tr>
   </table>
   <div class="field">
-    <%= f.hidden_field :create_user_id, :value => current_user.id %>
+    <%= f.hidden_field :create_user_id, :value => current_user.email %>
   </div>
+  <div class="field">
+    <%= f.hidden_field :available, :value => true %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :update_date, :value => Time.now %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :update_user_id, :value => current_user.email %>
+  </div>
+  
   <div class="actions">
     <%= f.submit "作成" %>
   </div>

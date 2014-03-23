@@ -18,7 +18,8 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.json
   def show
-    @meeting = Meeting.find(params[:id])
+    @meeting = Meeting.joins("JOIN users ON users.id = meetings.user_id").find(params[:id])
+    #@meeting = Meeting.find(params[:id], :include => [:user_id, :email])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,7 +43,7 @@ class MeetingsController < ApplicationController
     end
     @datas = Meeting.where("id  > 0").order("name ASC")
     @projects = Project.where("id  > 0").order("name ASC")
-
+    @users = User.where("id  > 0").order("email ASC")
 
 #    @meeting = Meeting.new
 #
