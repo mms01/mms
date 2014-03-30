@@ -4,9 +4,8 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-      
-    #@meetings = Meeting.all
-    #@meetings = Meeting.where("id  > 0").order("meeting_date DESC").order("start_time DESC")
+    @title = "ミーティング一覧"
+    @catch_phrase = "　　ミーティング及び議事録の登録・編集を行います。"
     @meetings = Meeting.where("meetings.id  > 0").joins("JOIN users ON users.id = meetings.user_id").order("meeting_date DESC").order("start_time DESC")
 
     respond_to do |format|
@@ -19,6 +18,9 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.json
   def show
+    @title = "ミーティング詳細"
+    @catch_phrase = "　　ミーティングの詳細情報を表示します。"
+    
     @meeting = Meeting.joins("JOIN users ON users.id = meetings.user_id").find(params[:id])
     #@meeting = Meeting.find(params[:id], :include => [:user_id, :email])
 
@@ -31,7 +33,9 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   # GET /meetings/new.json
   def new
-    @msg = ""
+    @title = "ミーティング登録"
+    @catch_phrase = "　　新規にミーティングを登録します。"
+    @notice = ""
 
     @meeting = Meeting.new
     if request.post? then
@@ -55,7 +59,10 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1/edit
   def edit
-    @msg = ""
+    @title = "ミーティング編集"
+    @catch_phrase = "　　ミーティングの編集及び議事録の登録・編集を行います。"
+    @notice = ""
+    
     @meeting = Meeting.find(params[:id])
 
   end
