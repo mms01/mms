@@ -32,8 +32,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/new.json
   def new
     @msg = ""
-    @title = "ミーティングの登録"
-    @info = "新規にミーティングを登録します。"
+
     @meeting = Meeting.new
     if request.post? then
       @meeting = Meeting.new(params[:meeting])
@@ -57,8 +56,6 @@ class MeetingsController < ApplicationController
   # GET /meetings/1/edit
   def edit
     @msg = ""
-    @title = "ミーティングの編集"
-    @info = "ミーティングを編集します。"
     @meeting = Meeting.find(params[:id])
 
   end

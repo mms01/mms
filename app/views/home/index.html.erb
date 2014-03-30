@@ -1,4 +1,16 @@
-<h1>Meeting Management System Home</h1>
-<p><a href="../projects/">projects</a></p>
-<p><a href="../meetings/">meetings</a></p>
-<p><a href="../minutes/">minutes</a></p>
+<div class="header">
+	<h1>Meeting Management System Home</h1>
+	<p>　　開催予定ミーティング、及びその議事録を管理するサイトです。</p>
+
+</div>
+
+<div class="menu">
+	<h2>■MENU</h2>
+	<li><%= link_to 'ミーティング管理', { :controller => 'meetings', :action => 'index'}  %></li>
+	<li><%= link_to '議事録管理（将来的にミーティングに統合？）', { :controller => 'minutes', :action => 'index'}  %></li>
+	<br>
+	<h2>■管理者MENU</h2>
+	<li><%= link_to 'プロジェクト管理', { :controller => 'projects', :action => 'index'}  %></li>
+</div>
+
+

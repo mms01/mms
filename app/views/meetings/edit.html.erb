@@ -1,6 +1,11 @@
 <p><%= @msg %></p>
-<h1><%= @title %></h1>
-<p><%= @info %></p>
+
+<div class="header">
+	<h1>ミーティング編集</h1>
+	<p>　　ミーティングの編集及び議事録の登録・編集を行います。</p>
+</div>
+
+
 <%= form_for(@meeting, :url => {:action => 'edit'}) do |f| %>
 
   <% if @meeting.errors.any? %>
