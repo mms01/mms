@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20140323144340) do
     t.string   "status"
     t.integer  "project_id"
     t.string   "update_user_id"
-    t.integer  "host_user_id"
     t.integer  "user_id"
   end
 

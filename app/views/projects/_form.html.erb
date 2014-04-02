@@ -32,9 +32,8 @@
 
   <div class="field">
     <%= f.label :manager_id, "管理者" %><br />
-    <%= f.text_field :manager_id %>
+    <%= f.collection_select :manager_id, @user, :id, :email, :include_blank => true %>
   </div>
-
 
   <div class="field">
     <%= f.label :purpose, "目的" %><br />
@@ -42,13 +41,15 @@
   </div>
 
   <div class="field">
-    <% options = ["計画中", "進行中", "完了", "保留"] %>
+    <% options = ["計画中", "稼働中", "完了", "保留"] %>
     <%= f.label :sts, "ステータス" %><br />
     <%= f.select :sts, options %>
   </div>
 
-
-
+  <div class="field">
+    添付ファイル<br />
+   <%= f.file_field :upload_file %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

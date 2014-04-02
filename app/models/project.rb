@@ -9,4 +9,8 @@ class Project < ActiveRecord::Base
                   :sts,
                   :atached,
                   :purpose
+
+  has_one :attach, class_name: "ProjectAttach", dependent: :destroy
+  belongs_to :user, foreign_key: "manager_id"
+
 end

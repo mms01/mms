@@ -18,7 +18,7 @@
      <td height="30", width="100"><%= link_to project.name, project %></td>
      <td height="30", width="100"><%= project.start_date  %></td>
      <td height="30", width="100"><%= project.end_date  %></td>
-     <td height="30", width="100"><%= project.manager_id  %></td>
+     <td height="30", width="100"><%= project.user.email if project.user %></td>
      <td height="30", width="100"><%= project.sts  %></td>
      <td>
        <%= link_to '編集', edit_project_path(project) %> |

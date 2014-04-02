@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
 
   # プロジェクト一覧
   def index
+   @user = User.new
    @projects = Project.order("id")
 
     respond_to do |format|
@@ -12,8 +13,9 @@ class ProjectsController < ApplicationController
     end
 
 #    @projects = Project.order("id")
-
   end
+
+
 
   # 検索
 #  def search
@@ -37,16 +39,18 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
+    @user = User.all
     @project = Project.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
     end
+
   end
 
   # GET /projects/1/edit
   def edit
+    @user = User.all
     @project = Project.find(params[:id])
   end
 
