@@ -1,80 +1,89 @@
-<h1>ミーティング詳細</h1>
 
-<p id="notice"><%= notice %></p>
+<table>
+<tr>
+  <th>ID:</th>
+  <td><%= @meeting.id %></td>
+</tr>
+</tr>
+
+<tr>
+  <th>プロジェクト:</th>
+  <td><%= @meeting.project.name %></td>
+</tr>
+
+<tr>
+  <th>議題:</th>
+  <td><%= @meeting.title %></td>
+</tr>
+
+<tr>
+  <th>目的:</th>
+  <td><%= @meeting.purpose %></td>
+</tr>
+
+<tr>
+  <th>開催日:</th>
+  <td><%= @meeting.meeting_date %></td>
+</tr>
+
+<tr>
+  <th>開始予定時間:</th>
+  <td><%= @meeting.start_time.strftime("%H:%M") %><td>
+</tr>
+
+<tr>
+  <th>終了予定時間:</th>
+  <td><%= @meeting.end_time.strftime("%H:%M") %></td>
+</tr>
+
+<tr>
+  <th>開催場所:</th>
+  <td><%= @meeting.place %></td>
+</tr>
+
+<tr>
+  <th>主催者:</th>
+  <td><%= @meeting.user.email %><td>
+</tr>
+
+<tr>
+  <th>ステータス:</th>
+  <td><%= @meeting.status %></td>
+</tr>
+
+<tr>
+  <th>登録者:</th>
+  <td><%= @meeting.create_user_id %></td>
+</tr>
+
+<tr>
+  <th>更新日時:</th>
+  <td><%= @meeting.update_date.strftime("%Y/%m/%d %H:%M") %></td>
+</tr>
+
+<tr>
+  <th>更新者:</th>
+  <td><%= @meeting.update_user_id %></td>
+</tr>
+
+<tr>
+  <th>議事録:</th>
+  <td>
+    <%= @minute_id %> 
+    <% if @minute_id == 'なし' %> 
+      [<%= link_to '登録', url_for(:controller => "minutes", :action => "new", :id => @meeting.id) %>]
+    <% else %>
+      [<%= link_to '参照', url_for(:controller => "minutes", :action => "show", :id => @minute_id) %>]
+    <% end %>
+  </td>
+</tr>
+</table>
 
 <p>
-  <b>ID:</b>
-  <%= @meeting.id %>
-</p>
-
-<p>
-  <b>プロジェクト:</b>
-  <%= @meeting.project.name %>
-</p>
-
-<p>
-  <b>議題:</b>
-  <%= @meeting.title %>
-</p>
-
-<p>
-  <b>目的:</b>
-  <%= @meeting.purpose %>
-</p>
-
-<p>
-  <b>開催日:</b>
-  <%= @meeting.meeting_date %>
-</p>
-
-<p>
-  <b>開始予定時間:</b>
-  <%= @meeting.start_time.strftime("%H:%M") %>
-</p>
-
-<p>
-  <b>終了予定時間:</b>
-  <%= @meeting.end_time.strftime("%H:%M") %>
-</p>
-
-<p>
-  <b>開催場所:</b>
-  <%= @meeting.place %>
-</p>
-
-<p>
-  <b>主催者:</b>
-  <%= @meeting.user.email %>
-</p>
-
-<p>
-  <b>対象者:（そのうち対応）</b>
-</p>
-
-<p>
-  <b>ステータス:</b>
-  <%= @meeting.status %>
-</p>
-
-<p>
-  <b>登録者:</b>
-  <%= @meeting.create_user_id %>
-</p>
-
-<p>
-  <b>更新日時:</b>
-  <%= @meeting.update_date.strftime("%Y/%m/%d %H:%M") %>
-</p>
-
-<p>
-  <b>更新者:</b>
-  <%= @meeting.update_user_id %>
-</p>
-
 
 <%= link_to '[編集]', edit_meeting_path(@meeting) %> |
 <a href="javascript:void(0)" onclick="doDelete(<%=  @meeting.id %>);">[削除]</a> |
-<%= link_to '[戻る]', meetings_path %>
+<%= link_to '[一覧に戻る]', meetings_path %>
 
 <%= javascript_include_tag 'meetings' %>
 

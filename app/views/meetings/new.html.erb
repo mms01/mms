@@ -1,7 +1,10 @@
-<p><%= @msg %></p>
-<h1><%= @title %></h1>
-<p><%= @info %></p>
+
+<%= form_for(@meeting) do |f| %>
+<%
+=begin %>
 <%= form_for(@meeting, :url => {:action => 'new'}) do |f| %>
+<%
+=end %>
 
   <% if @meeting.errors.any? %>
     <div id="error_explanation">
@@ -19,7 +22,7 @@
     <tr>
       <th>プロジェクト</th>
       <td>
-        <%= select_tag 'meeting[project_id]', options_from_collection_for_select(@projects, :id, :name) %>
+        <%= select_tag 'meeting[project_id]', options_from_collection_for_select(@projects, :id, :name, 0) %>
       </td>
     </tr>
     <tr>
@@ -50,7 +53,7 @@
     <tr>
       <th>主催者</th>
       <td>
-        <%= select_tag 'meeting[host_user_id]', options_from_collection_for_select(@users, :id, :email) %>
+        <%= select_tag 'meeting[user_id]', options_from_collection_for_select(@users, :id, :email) %>
       </td> 
     </tr>
     <tr>
@@ -77,4 +80,4 @@
   </div>
 
 <% end %>
-<%= link_to '戻る', meetings_path %>
+<%= link_to '一覧に戻る', meetings_path %>

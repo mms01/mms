@@ -5,7 +5,7 @@ class Meeting < ActiveRecord::Base
                   :project_id, 
                   :title,
                   :purpose, 
-                  :host_user_id,
+                  :user_id,
                   :create_user_id,
                   :place,
                   :update_date,
@@ -17,10 +17,10 @@ class Meeting < ActiveRecord::Base
                   :update_user_id
   
   validates :title,
-    :presence => { :message => '議題は必ず入力してください。' }
+    :presence => { :message => '(議題)は必ず入力してください。' }
     
   belongs_to :project
-  belongs_to :user,     :foreign_key => 'host_user_id'
+  belongs_to :user
 
 
 end

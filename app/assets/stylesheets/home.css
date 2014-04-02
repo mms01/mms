@@ -1,0 +1,71 @@
+/* ヘッダ */
+.header {
+	padding: 20px;
+	background-color: #dfe3e8;
+}
+
+.header h1 {
+	margin: 0;
+	font-size: 20px;
+	line-height: 1;
+}
+
+.header h1 a {
+	color: #000;
+	text-decoration: none;
+}
+
+.header p {
+	margin: 8px 0 0 0;
+	font-size: 12px;
+	line-height: 1;
+}
+
+.footer {
+	padding: 20px;
+	background-color: #dfe3e8;
+}
+
+.footer p {
+	margin: 0 0 3px 0;
+	font-size: 12px;
+	line-height: 1.4;
+}
+
+.footer a {
+	color: #666;
+	text-decoration: none;
+}
+
+
+/* メニュー */
+.menu {
+	padding: 20px;
+}
+
+.menu h2 {
+	margin: 0 0 10px 0;
+	font-size: 18px;
+	line-height: 1.2;
+}
+
+.menu ul,
+.menu ol {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	line-height: 1.4;
+	list-style: none;
+}
+
+.menu li a {
+	display: block;
+	padding: 10px 5px 10px 5px;
+	color: #000;
+	text-decoration: none;
+}
+
+.menu li a:hover {
+	background-color: #eee;
+}
+
