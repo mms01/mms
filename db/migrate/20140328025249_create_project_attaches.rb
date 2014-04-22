@@ -7,7 +7,7 @@ class CreateProjectAttaches < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :poject_attach, :project_id
+    #add_index :project_attach, :project_id
 
   end
 end
