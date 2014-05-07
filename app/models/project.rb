@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  validates :manager_id, :name, presence: true
+
   attr_accessible :name,
                   :created_at,
                   :updated_at,
@@ -10,7 +12,6 @@ class Project < ActiveRecord::Base
                   :atached,
                   :purpose
 
-  has_one :attach, class_name: "ProjectAttach", dependent: :destroy
   belongs_to :user, foreign_key: "manager_id"
 
 end

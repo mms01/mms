@@ -57,6 +57,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+    @user = User.all
     @project = Project.new(params[:project])
 
     respond_to do |format|
@@ -73,6 +74,8 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
+    @user = User.all
+
     @project = Project.find(params[:id])
 
     respond_to do |format|
