@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PostgreSQL. Versions 8.2 and up are supported.
 #
 # Install the pg driver:
@@ -57,4 +58,65 @@ production:
   host: ec2-54-197-241-82.compute-1.amazonaws.com
   password: fezb1JId6je2cetxgUpj6T09c8
   port: 5432
+=======
+# PostgreSQL. Versions 8.2 and up are supported.
+#
+# Install the pg driver:
+#   gem install pg
+# On Mac OS X with macports:
+#   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
+# On Windows:
+#   gem install pg
+#       Choose the win32 build.
+#       Install PostgreSQL and put its /bin directory on your path.
+#
+# Configure Using Gemfile
+# gem 'pg'
+#
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: mms_development
+  pool: 5
+  username: postgres
+  password: password
+  port: 5433
+
+  # Connect on a TCP socket. Omitted by default since the client uses a
+  # domain socket that doesn't need configuration. Windows does not have
+  # domain sockets, so uncomment these lines.
+  #host: localhost
+  #port: 5432
+
+  # Schema search path. The server defaults to $user,public
+  #schema_search_path: myapp,sharedapp,public
+
+  # Minimum log levels, in increasing order:
+  #   debug5, debug4, debug3, debug2, debug1,
+  #   log, notice, warning, error, fatal, and panic
+  # The server defaults to notice.
+  #min_messages: warning
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: mms_test
+  pool: 5
+  username: postgres
+  password: password
+  port: 5433
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: de7o1cjlpqfta1
+  username: oirlmykzcsvsay
+  host: ec2-54-197-241-82.compute-1.amazonaws.com
+  password: fezb1JId6je2cetxgUpj6T09c8
+  port: 5432
+>>>>>>> 1050f8bccde613211356eaa372880bc477127aa5
   
