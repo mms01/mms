@@ -45,7 +45,7 @@
     <tr>
       <th>主催者</th>
       <td>
-        <%= select_tag 'meeting[user_id]', options_from_collection_for_select(@users, :id, :email, @current_user_idx) %>
+        <%= select_tag 'meeting[user_id]', options_from_collection_for_select(@users, :id, :user_name, @current_user_idx) %>
       </td>
     </tr>
     <tr>
