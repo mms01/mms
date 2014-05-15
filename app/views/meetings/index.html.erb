@@ -1,4 +1,30 @@
 
+<table>
+  <form method="post" action="/meetings/find">
+    <tr>
+      <th>議題:</th>
+      <%# params[:title]で、初期値として前回入力値をセットする %>
+      <td><%= text_field_tag 'title', params[:title], { :size => 50} %></td>
+    </tr>
+    <tr>
+      <th>プロジェクト:</th>
+      <td>
+        <%# content_tag: 選択肢に「非選択」を追加するため %>
+        <%# options_from_collection_for_selectの第三引数：前回選択値を復旧させるため %>
+        <%= select_tag 'project_id', content_tag(:option,'選択してください...',:value=>"")+options_from_collection_for_select(@projects, :id, :name, params[:project_id] || 0) %>
+      </td>
+    </tr>
+    <tr><th></th>
+      <td><input type="submit" value="検索"></td>
+    </tr>
+    <%# セッション情報を取り出すために必要。この1文が無いと、セッション切れでログイン画面にふっとばされる %>
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+  </form>
+</table>
+
+<hr />
+
+
 <table rules="rows">
   <tr>
     <th>ID&nbsp;&nbsp;</th>
@@ -11,7 +37,7 @@
   </tr>
 
 <% @meetings.each do |meeting| %>
-  <tr>
+  <tr style="background-color:<%= cycle('FFffFF','#FFff99') %>">
     <td height="30"><%= meeting.id %>&nbsp&nbsp;&nbsp;&nbsp</td>
     <td height="30"><%= meeting.project.name %>&nbsp&nbsp;&nbsp;&nbsp</td>
     <td height="30"><%= link_to meeting.title, meeting %>&nbsp;&nbsp;&nbsp;&nbsp;</td>

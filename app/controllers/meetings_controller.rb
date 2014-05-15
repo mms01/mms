@@ -7,6 +7,7 @@ class MeetingsController < ApplicationController
     @title = "ミーティング一覧"
     @catch_phrase = "　　ミーティング及び議事録の登録・編集を行います。"
     @meetings = Meeting.where("meetings.id  > 0").joins("JOIN users ON users.id = meetings.user_id").order("meeting_date DESC").order("start_time DESC")
+    @projects = Project.where("id  > 0").order("name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -150,4 +151,39 @@ class MeetingsController < ApplicationController
     redirect_to :action => "index"
   end
   
+  #Find
+  def find
+    @title = "ミーティングの検索結果"
+    @projects = Project.where("id  > 0").order("name ASC")
+
+    if params[:project_id] == ""
+      # プロジェクトが指定されていない場合
+      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ?', "%"+params[:title]+"%").order("meeting_date DESC").order("start_time DESC")
+    else 
+      # プロジェクトが指定されている場合
+      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ? and meetings.project_id = ?', "%"+params[:title]+"%", params[:project_id]).order("meeting_date DESC").order("start_time DESC")
+    end
+
+
+
+# 自分の所属するプロジェクトのみ検索条件に表示する
+
+# 自分の所属するプロジェクトのミーティングのみ、対象とする
+
+# 開催日が過去のものを除外するチェックボックス
+
+
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render json: @meetings }
+   # end
+   
+
+   
+   # @meetings = Meeting.where("meetings.id  > 0").joins("JOIN users ON users.id = meetings.user_id").order("meeting_date DESC").order("start_time DESC")
+   #@meetings = Meeting.where('meetings.id  > 0 and title like ?', "%"+params[:title]+"%").joins("JOIN projects ON projects.id = meetings.project_id").order("meeting_date DESC").order("start_time DESC")
+   #@meetings = Meeting.where("meetings.id  > 0").joins("JOIN projects ON projects.id = meetings.project_id").order("meeting_date DESC").order("start_time DESC")
+   render "index"
+    
+  end
 end
