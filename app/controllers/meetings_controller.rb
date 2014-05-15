@@ -92,7 +92,6 @@ class MeetingsController < ApplicationController
     @title = "ミーティング登録"
     @catch_phrase = "　　新規にミーティングを登録します。"
     @notice = ""
-    
     @meeting = Meeting.new(params[:meeting])
     @projects = Project.where("id  > 0").order("name ASC")
     @users = User.where("id  > 0").order("email ASC")

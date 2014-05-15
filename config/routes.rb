@@ -1,15 +1,14 @@
 Mms::Application.routes.draw do
-  resources :project_users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations'
+  }
 
+  resources :project_users
 
   resources :minutes
 
-
-  devise_for :users
-
   get "meetings/delete"
   resources :meetings
-
 
   resources :projects
 
