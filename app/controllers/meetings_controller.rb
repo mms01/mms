@@ -7,7 +7,8 @@ class MeetingsController < ApplicationController
     @title = "ミーティング一覧"
     @catch_phrase = "　　ミーティング及び議事録の登録・編集を行います。"
     @meetings = Meeting.where("meetings.id  > 0").joins("JOIN users ON users.id = meetings.user_id").order("meeting_date DESC").order("start_time DESC")
-    @projects = Project.where("id  > 0").order("name ASC")
+    #@projects = Project.where("id  > 0").order("name ASC")
+    @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id').where('project_users.user_id = ?', current_user.id).order("name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -55,7 +56,7 @@ class MeetingsController < ApplicationController
       end
     end
 
-    @projects = Project.where("id  > 0").order("name ASC")
+    @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id').where('project_users.user_id = ?', current_user.id).order("name ASC")
     @users = User.where("id  > 0").order("email ASC")
 
 #    @meeting = Meeting.new
@@ -116,7 +117,7 @@ class MeetingsController < ApplicationController
     @notice = ""
     
     @meeting = Meeting.find(params[:id])
-    @projects = Project.where("id  > 0").order("name ASC")
+    @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id').where('project_users.user_id = ?', current_user.id).order("name ASC")
     @users = User.where("id  > 0").order("email ASC")
 
     respond_to do |format|
@@ -164,10 +165,6 @@ class MeetingsController < ApplicationController
     end
 
 
-
-# 自分の所属するプロジェクトのみ検索条件に表示する
-
-# 自分の所属するプロジェクトのミーティングのみ、対象とする
 
 # 開催日が過去のものを除外するチェックボックス
 
