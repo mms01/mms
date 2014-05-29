@@ -2,7 +2,8 @@ class MinutesController < ApplicationController
   # GET /minutes
   # GET /minutes.json
   def index
-    @minutes = Minute.all
+    # @minutes = Minute.all %>
+    @minutes = Minute.find(:all, :condition => ["meeting_id = ?" , :id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -34,6 +35,7 @@ class MinutesController < ApplicationController
   # GET /minutes/new.json
   def new
     @minute = Minute.new
+    @meeting = Meeting.find(params[:id])
 
     respond_to do |format|
       format.html # new.html.erb
