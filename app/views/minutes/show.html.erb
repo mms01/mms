@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Meeting:</b>
-  <%= @minute.meeting_id %>
-</p>
+<table width="800" border="1">
+  <tr>
+    <th width="100" align="right">ミーティングID:</th>
+    <td width="700"><%= @minute.meeting_id %></td>
+  </tr>
+  <tr>
+    <th width="100" align="right" valign="top">Detail:</th>
+    <td width="750" valign="top"><%= simple_format(@minute.detail) %></td>
+  </tr>
+</table>
 
-<p>
-  <b>Detail:</b>
-  <%= @minute.detail %>
-</p>
-
-
-<%= link_to 'Edit', edit_minute_path(@minute) %> |
-<%= link_to 'Back', minutes_path %>
+<%= link_to '編集', edit_minute_path(@minute) %> |
+<%= link_to '戻る', url_for(:controller => "meetings", :action => "show", :id => @minute.meeting_id) %>

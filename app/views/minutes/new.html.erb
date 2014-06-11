@@ -23,11 +23,11 @@
     
     <div class="field">
       <%= minute.label :detail %><br />
-      <%= minute.text_field :detail %>
+      <%= minute.text_area :detail, :size=>"100x40" %>
     </div>
     <div class="actions">
       <%= minute.submit %>
     </div>
   <% end %>
 
-<%= link_to 'Back', minutes_path %>
+<%= link_to '戻る', url_for(:controller => "meetings", :action => "show", :id => @meeting.id) %>
