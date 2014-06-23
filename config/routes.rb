@@ -8,6 +8,7 @@ Mms::Application.routes.draw do
   resources :minutes
 
   get "meetings/delete"
+  get "meetings/index"
   resources :meetings
 
   resources :projects

@@ -6,10 +6,16 @@ class MeetingsController < ApplicationController
   def index
     @title = "ミーティング一覧"
     @catch_phrase = "　　ミーティング及び議事録の登録・編集を行います。"
-    #@meetings = Meeting.where("meetings.id  > 0").joins("JOIN users ON users.id = meetings.user_id").order("meeting_date DESC").order("start_time DESC")
+    
+    @page = params[:page].to_i
+    @page_num = 10
+    
     @meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
     						.where('project_users.user_id = ?', current_user.id)
     						.order("meeting_date DESC").order("start_time DESC")
+    						.offset(@page * @page_num).limit(@page_num)
+    @record_count = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+    						.where('project_users.user_id = ?', current_user.id).count
     						
     @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id')
     						.where('project_users.user_id = ?', current_user.id)

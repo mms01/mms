@@ -51,6 +51,17 @@
 
 <br />
 
+<% if @page > 0 then%>
+<a = href="/meetings/index?page=<%=(@page - 1) %>">[<%=(@page - 1) %>]</a>
+<% end %>
+[<%= @page %>]
+<% if @record_count > (@page + 1) * @page_num%>
+<a = href="/meetings/index?page=<%=(@page + 1) %>">[<%= (@page + 1) %>]</a>
+<% end %>
+
+<br />
+<br />
+
 <%= link_to '[新規作成]', new_meeting_path %> |
 <a href="../../">[HOME]</a>
 
