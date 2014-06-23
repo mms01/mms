@@ -3,4 +3,4 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @minute %> |
-<%= link_to 'Back', minutes_path %>
+<%= link_to '戻る', url_for(:controller => "minutes", :action => "show", :id => @minute.id) %>

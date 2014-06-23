@@ -72,7 +72,11 @@
 
 <%= link_to '[編集]', edit_meeting_path(@meeting) %> |
 <a href="javascript:void(0)" onclick="doDelete(<%=  @meeting.id %>);">[削除]</a> |
-<%= link_to '[議事録]', url_for(:controller => "minutes", :action => "index", :id => @minute_id) %> |
+    <% if @minute_id == 'なし' %> 
+      [<%= link_to '議事録登録', url_for(:controller => "minutes", :action => "new", :id => @meeting.id) %>]
+    <% else %>
+      [<%= link_to '議事録参照', url_for(:controller => "minutes", :action => "show", :id => @minute_id) %>]
+    <% end %>
 <%= link_to '[一覧に戻る]', meetings_path %>
 
 <%= javascript_include_tag 'meetings' %>
