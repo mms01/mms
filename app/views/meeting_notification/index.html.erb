@@ -1,0 +1,18 @@
+﻿<form method="post" action="/meeting_notification/notify">
+  <input type="hidden" name="meeting_id" value="<%= @meeting_id %>">
+  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+
+  <div class="field">
+    件名<br />
+    <input type="text" name="subject" size="85" value="<%= @subject %>">
+  </div>
+  <div class="field">
+    本文<br />
+    <textarea name="body" cols=85 rows=20><%= @body %></textarea>
+  </div>
+  <div class="actions">
+    <input type="submit">
+  </div>
+
+</form>
+
