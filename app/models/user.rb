@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   
   has_many :projects, foreign_key: "manager_id"
+  has_many :project_users
+
+
 end

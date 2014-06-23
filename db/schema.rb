@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(:version => 20140422090612) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "project_attaches", :force => true do |t|
+    t.integer  "project_id",   :null => false
+    t.binary   "upload_file"
+    t.string   "content_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "project_users", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"

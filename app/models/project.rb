@@ -14,4 +14,6 @@ class Project < ActiveRecord::Base
 
   belongs_to :user, foreign_key: "manager_id"
 
+  has_many :project_users
+
 end
