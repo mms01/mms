@@ -2,12 +2,12 @@
 
 <p>
   <b>Project:</b>
-  <%= @project_user.project_id %>
+  <%= @project_user.project.name if @project_user.project %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @project_user.user_id %>
+  <%= @project_user.user.user_name if @project_user.user %>
 </p>
 
 
