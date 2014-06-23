@@ -6,9 +6,14 @@ class MeetingsController < ApplicationController
   def index
     @title = "ミーティング一覧"
     @catch_phrase = "　　ミーティング及び議事録の登録・編集を行います。"
-    @meetings = Meeting.where("meetings.id  > 0").joins("JOIN users ON users.id = meetings.user_id").order("meeting_date DESC").order("start_time DESC")
-    #@projects = Project.where("id  > 0").order("name ASC")
-    @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id').where('project_users.user_id = ?', current_user.id).order("name ASC")
+    #@meetings = Meeting.where("meetings.id  > 0").joins("JOIN users ON users.id = meetings.user_id").order("meeting_date DESC").order("start_time DESC")
+    @meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+    						.where('project_users.user_id = ?', current_user.id)
+    						.order("meeting_date DESC").order("start_time DESC")
+    						
+    @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id')
+    						.where('project_users.user_id = ?', current_user.id)
+    						.order("name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
