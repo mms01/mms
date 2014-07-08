@@ -1,4 +1,7 @@
 Mms::Application.routes.draw do
+  get "meeting_notification/index"
+  post "meeting_notification/notify"
+
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
   }
