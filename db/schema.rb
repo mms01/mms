@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140623043932) do
+ActiveRecord::Schema.define(:version => 20140708045122) do
 
   create_table "meetings", :force => true do |t|
     t.string   "title"
@@ -36,14 +36,6 @@ ActiveRecord::Schema.define(:version => 20140623043932) do
     t.string   "detail"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "project_attaches", :force => true do |t|
-    t.integer  "project_id",   :null => false
-    t.binary   "upload_file"
-    t.string   "content_type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
 
   create_table "project_users", :force => true do |t|
@@ -83,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20140623043932) do
     t.datetime "updated_at",                             :null => false
     t.string   "role"
     t.string   "user_name"
+    t.boolean  "available"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
