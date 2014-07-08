@@ -1,0 +1,58 @@
+<%= render "todos/errors", obj: @todo %>
+
+<%= form_for(@todo) do |f| %>
+  <% if @todo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+
+      <ul>
+      <% @todo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :summary, "概要" %><br />
+    <%= f.text_field :summary %>
+  </div>
+
+
+<!--
+
+  <div class="field">
+    <%= f.label :detail, "詳細" %><br />
+    <%= f.text_area :detail %>
+  </div>
+
+  <div class="field">
+    <%= f.label :owner, "担当者" %><br />
+    <%= f.collection_select :owner, @user, :id, :email, :include_blank => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :enddate, "期限" %><br />
+    <%= f.date_select :enddate,
+             start_year: 2001, end_year: 2100,
+             use_month_numbers: true %>
+  </div>
+
+  <div class="field">
+    <% options = ["未着手", "仕掛中", "完了", "保留"] %>
+    <%= f.label :sts, "ステータス" %><br />
+    <%= f.select :sts, options %>
+  </div>
+
+  <div class="field">
+    <%= f.label :biko, "備考" %><br />
+    <%= f.text_area :biko %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+--!>
+
+<% end %>

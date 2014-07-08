@@ -34,7 +34,7 @@
 
   <div class="field">
     <%= f.label :manager_id, "管理者" %><br />
-    <%= f.collection_select :manager_id, @user, :id, :email, :include_blank => true %>
+    <%= f.collection_select :manager_id, @user, :id, :user_name, :include_blank => true %>
   </div>
 
   <div class="field">

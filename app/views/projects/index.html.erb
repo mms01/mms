@@ -1,4 +1,4 @@
-<% @page_title = "Projects list" %>
+<% @page_title = "プロジェクト一覧" %>
 
 <h1><%= @page_title %></h1>
 
@@ -10,7 +10,6 @@
     <th>終了日</th>
     <th>管理者</th>
     <th>ステータス</th>
-    <th colspan="2">Menu</th>
   </tr>
 
 <% @projects.each do |project| %>
@@ -18,12 +17,8 @@
      <td height="30", width="100"><%= link_to project.name, project %></td>
      <td height="30", width="100"><%= project.start_date  %></td>
      <td height="30", width="100"><%= project.end_date  %></td>
-     <td height="30", width="100"><%= project.user.email if project.user %></td>
+     <td height="30", width="100"><%= project.user.user_name if project.user %></td>
      <td height="30", width="100"><%= project.sts  %></td>
-     <td>
-       <%= link_to '編集', edit_project_path(project) %> |
-       <%= link_to '削除', project_path(project), :method => :delete, data: { confirm: 'Are you sure?' } %>
-    </td>
   </tr>
 <% end %>
 </table>
@@ -34,6 +29,4 @@
 
 <br />
 
-<%= link_to 'Create New Project', new_project_path %> |
-<%= link_to 'Show Projects', projects_path %> |
-<a href="../../">Home</a>
+<%= link_to '[新規作成]', new_project_path %> |

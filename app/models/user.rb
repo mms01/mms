@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   
   has_many :projects, foreign_key: "manager_id"
   has_many :project_users
-
+  has_many :todos, foreign_key: "owner"
 
 end

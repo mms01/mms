@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140623043932) do
+ActiveRecord::Schema.define(:version => 20140708054920) do
 
   create_table "meetings", :force => true do |t|
     t.string   "title"
@@ -38,14 +38,6 @@ ActiveRecord::Schema.define(:version => 20140623043932) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "project_attaches", :force => true do |t|
-    t.integer  "project_id",   :null => false
-    t.binary   "upload_file"
-    t.string   "content_type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "project_users", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
@@ -66,6 +58,19 @@ ActiveRecord::Schema.define(:version => 20140623043932) do
     t.text     "purpose"
     t.string   "sts"
     t.binary   "attached"
+  end
+
+  create_table "todos", :force => true do |t|
+    t.string   "meeting_id"
+    t.string   "summary"
+    t.string   "detail"
+    t.integer  "owner"
+    t.date     "enddate"
+    t.integer  "sts"
+    t.string   "biko"
+    t.integer  "createdby"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

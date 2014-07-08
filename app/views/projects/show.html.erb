@@ -1,16 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<% @page_title = "プロジェクトの詳細" %>
+<% @page_title = "プロジェクト詳細" %>
 <h1><%= @page_title  %></h1>
-
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
 
 <table class="attr">
   <tr>
@@ -31,12 +22,12 @@
   </tr>
   <tr>
     <th>管理者</th>
-    <td><%= @project.manager_id %></td>
+    <td><%= @project.user.user_name %></td>
   </tr>
 
   <tr>
-    <th>目的</th>
-    <td><%= @project.purpose %></td>
+    <th valign="top">目的:</th>
+    <td valign="top"><%= simple_format(@project.purpose) %></td>
   </tr>
 
   <tr>
@@ -44,8 +35,14 @@
     <td><%= @project.sts %></td>
   </tr>
 
-
-
-
 </table>
 
+<%= link_to '[編集]', edit_project_path(@project) %> |
+
+
+<a href="javascript:void(0)" onclick="doDelete(<%= @project.id %>);">[削除]</a> |
+
+
+<%= link_to '[一覧に戻る]', projects_path %>
+
+<%= javascript_include_tag 'projects' %>

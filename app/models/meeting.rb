@@ -21,6 +21,6 @@ class Meeting < ActiveRecord::Base
     
   belongs_to :project
   belongs_to :user
-
+  has_many :todo
 
 end

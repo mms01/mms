@@ -78,6 +78,7 @@
     <% else %>
       [<%= link_to '議事録参照', url_for(:controller => "minutes", :action => "show", :id => @minute_id) %>]
     <% end %>
+<%= link_to '[ToDo一覧]', { :controller => 'todos', :action => 'index'} %>
 <%= link_to '[一覧に戻る]', meetings_path %>
 
 <%= javascript_include_tag 'meetings' %>

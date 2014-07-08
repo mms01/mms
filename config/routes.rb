@@ -15,6 +15,7 @@ Mms::Application.routes.draw do
   resources :meetings
 
   resources :projects
+  resources :todos
 
 
   # The priority is based upon order of creation:
