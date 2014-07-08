@@ -165,16 +165,40 @@ class MeetingsController < ApplicationController
   #Find
   def find
     @title = "ミーティングの検索結果"
-    @projects = Project.where("id  > 0").order("name ASC")
+    #@projects = Project.where("id  > 0").order("name ASC")
+    
+    @page = params[:page].to_i
+    @page_num = 10
 
-    if params[:project_id] == ""
+#    if params[:project_id] == ""
       # プロジェクトが指定されていない場合
-      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ?', "%"+params[:title]+"%").order("meeting_date DESC").order("start_time DESC")
+#      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ?', "%"+params[:title]+"%").order("meeting_date DESC").order("start_time DESC")
+#    else 
+      # プロジェクトが指定されている場合
+#      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ? and meetings.project_id = ?', "%"+params[:title]+"%", params[:project_id]).order("meeting_date DESC").order("start_time DESC")
+#    end
+
+	if params[:project_id] == ""
+      # プロジェクトが指定されていない場合
+	  @meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+    						.where('project_users.user_id = ?  and meetings.title like ?', current_user.id, "%"+params[:title]+"%")
+    						.order("meeting_date DESC").order("start_time DESC")
+    						.offset(@page * @page_num).limit(@page_num)
+    
     else 
       # プロジェクトが指定されている場合
-      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ? and meetings.project_id = ?', "%"+params[:title]+"%", params[:project_id]).order("meeting_date DESC").order("start_time DESC")
+      @meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+    						.where('project_users.user_id = ?  and meetings.title like ? and meetings.project_id = ?', current_user.id, "%"+params[:title]+"%", params[:project_id])
+    						.order("meeting_date DESC").order("start_time DESC")
+    						.offset(@page * @page_num).limit(@page_num)
     end
-
+    
+    @record_count = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+    						.where('project_users.user_id = ?', current_user.id).count
+    						
+    @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id')
+    						.where('project_users.user_id = ?', current_user.id)
+    						.order("name ASC")
 
 
 # 開催日が過去のものを除外するチェックボックス
