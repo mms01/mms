@@ -10,7 +10,8 @@ class Project < ActiveRecord::Base
                   :create_user_id,
                   :sts,
                   :atached,
-                  :purpose
+                  :purpose,
+                  :available
 
   belongs_to :user, foreign_key: "manager_id"
 
