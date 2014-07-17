@@ -41,8 +41,10 @@ class MeetingsController < ApplicationController
     @datas = Minute.where("meeting_id='" + params[:id] + "'")
     if @datas.exists? then
       @minute_id = @datas[0].id
+      @exist_minute = 1
     else
       @minute_id = "なし"
+      @exist_minute = 0
     end
 
     respond_to do |format|
@@ -147,6 +149,7 @@ class MeetingsController < ApplicationController
   def destroy
     @meeting = Meeting.find(params[:id])
     if !checkme? @meeting then return end
+    
     @meeting.destroy
 
     respond_to do |format|
@@ -157,6 +160,7 @@ class MeetingsController < ApplicationController
   
   # DELETE
   def delete
+    
     obj = Meeting.find(params[:id])
     obj.destroy
     redirect_to :action => "index"

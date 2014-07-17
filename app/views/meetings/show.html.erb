@@ -71,7 +71,7 @@
 <p>
 
 <%= link_to '[編集]', edit_meeting_path(@meeting) %> |
-<a href="javascript:void(0)" onclick="doDelete(<%=  @meeting.id %>);">[削除]</a> |
+<a href="javascript:void(0)" onclick="doDelete(<%=  @meeting.id %>,<%=  @exist_minute %>);">[削除]</a> |
 [<%= link_to '開催通知', url_for( :controller => 'meeting_notification', :action => 'index', :meeting_id => @meeting.id) %>] |
     <% if @minute_id == 'なし' %> 
       [<%= link_to '議事録登録', url_for(:controller => "minutes", :action => "new", :id => @meeting.id) %>]
