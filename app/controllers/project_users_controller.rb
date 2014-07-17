@@ -1,7 +1,10 @@
-class ProjectUsersController < ApplicationController
+﻿class ProjectUsersController < ApplicationController
   # GET /project_users
   # GET /project_users.json
   def index
+    @title = "プロジェクトユーザ一覧"
+    @catch_phrase = "　　プロジェクトとユーザの紐付けを行います。"
+
     @project_users = ProjectUser.all
 
     respond_to do |format|
@@ -13,6 +16,8 @@ class ProjectUsersController < ApplicationController
   # GET /project_users/1
   # GET /project_users/1.json
   def show
+    @title = "プロジェクトユーザ詳細"
+    @catch_phrase = "プロジェクトユーザの詳細情報を表示します。"
     @project_user = ProjectUser.find(params[:id])
 
     respond_to do |format|
