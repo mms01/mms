@@ -1,4 +1,4 @@
-<% @page_title = "ToDo list" %>
+<% @page_title = "ToDo一覧" %>
 
 <h1><%= @page_title %></h1>
 
@@ -34,4 +34,4 @@
 
 <br />
 
-<%= link_to 'Create New todo', new_todo_path %> |
+<%= link_to '新規作成', url_for(:controller => "todos", :action => "new", :id => @meeting)%>

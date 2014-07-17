@@ -2,9 +2,11 @@ class TodosController < ApplicationController
   # GET /todo
   # GET /todo.json
   def index
-    # @todo = Todo.all %>
+ #    @meeting_id = params[:id]
     @todos = Todo.all
+    @meeting = Meeting.find_by_id(params[:id])
 
+ 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @todo }
@@ -34,10 +36,9 @@ class TodosController < ApplicationController
   # GET /todo/new
   # GET /todo/new.json
   def new
+    @meeting = Meeting.find(params[:id])
     @usre = User.all
     @todo = Todo.new
-    @meeting = Meeting.find(params[:id])
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @todo }
