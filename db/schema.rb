@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20140708054920) do
+=======
+ActiveRecord::Schema.define(:version => 20140708045122) do
+>>>>>>> 807eda264ce8c538d90130948fe7361de47eea5e
 
   create_table "meetings", :force => true do |t|
     t.string   "title"
@@ -88,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20140708054920) do
     t.datetime "updated_at",                             :null => false
     t.string   "role"
     t.string   "user_name"
+    t.boolean  "available"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

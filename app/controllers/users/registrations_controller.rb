@@ -6,6 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     if(params['role_key'] == "admin" || params['role_key'] == "user") then
       params['user']['role'] = params['role_key']
+      params['user']['available'] = true
       puts @user
       super
     else
