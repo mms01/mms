@@ -34,13 +34,19 @@
     <th>ステータス</th>
     <td><%= @project.sts %></td>
   </tr>
+  
+  <tr>
+    <th>削除</th>
+    <td><%= check_box_tag @project.available, true, false, :disabled => true  %></td>
+  </tr>
 
 </table>
 
 <%= link_to '[編集]', edit_project_path(@project) %> |
 
-
+<!--
 <a href="javascript:void(0)" onclick="doDelete(<%= @project.id %>);">[削除]</a> |
+-->
 
 
 <%= link_to '[一覧に戻る]', projects_path %>

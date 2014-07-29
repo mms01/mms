@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20140728073357) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "manager_id"
     t.string   "create_user_id"
     t.date     "start_date"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20140728073357) do
     t.text     "purpose"
     t.string   "sts"
     t.binary   "attached"
+    t.boolean  "available",      :default => true
   end
 
   create_table "todos", :force => true do |t|

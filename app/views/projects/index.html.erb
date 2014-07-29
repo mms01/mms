@@ -10,6 +10,7 @@
     <th>終了日</th>
     <th>管理者</th>
     <th>ステータス</th>
+    <th>削除</th>
   </tr>
 
 <% @projects.each do |project| %>
@@ -19,6 +20,7 @@
      <td height="30", width="100"><%= project.end_date  %></td>
      <td height="30", width="100"><%= project.user.user_name if project.user %></td>
      <td height="30", width="100"><%= project.sts  %></td>
+     <td height="30", width="100"><%= check_box_tag project.available, true, false, :disabled => true  %></td>
   </tr>
 <% end %>
 </table>
