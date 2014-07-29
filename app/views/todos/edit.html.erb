@@ -1,16 +1,9 @@
-<h1>ToDo登録</h1>
-
 
 <%= form_for(@todo) do |f| %>
-<%
-=begin %>
-<%= form_for(@todo, :url => {:action => 'new'}) do |f| %>
-<%
-=end %>
 
   <% if @todo.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@todo.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+      <h2><%= pluralize(@todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
 
       <ul>
       <% @todo.errors.full_messages.each do |msg| %>
@@ -55,24 +48,12 @@
     </tr>
   </table>
 
-
-  <div class="field">
-    <%= f.hidden_field :createdby, :value => current_user.id %>
-  </div>
-  
-  <div class="field">
-    <%= f.hidden_field :meeting_id, :value => params[:mid] %>
-  </div>
-
-
-
-
   <div class="actions">
-    <%= f.submit "作成" %>
+    <%= f.submit "更新" %>
   </div>
-
-<%= link_to '一覧に戻る', :back %>
 
 <% end %>
 
 
+<%= link_to '[詳細に戻る]', @todo %> |
+<%= link_to '[一覧に戻る]', todos_path %>

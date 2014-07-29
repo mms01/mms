@@ -5,25 +5,20 @@
 <% if @todos.present? %>
 <table rules="rows">
   <tr>
-    <th>ミーティングID</th>
-    <th>概要</th>
+    <th>ID</th>
+    <th>ToDo概要</th>
     <th>担当者</th>
     <th>ステータス</th>
     <th>期限</th>
-    <th colspan="2">Menu</th>
   </tr>
 
 <% @todos.each do |todo| %>
   <tr>
-     <td height="30", width="100"><%= todo.metting_id  %></td>
-     <td height="30", width="100"><%= link_to todo.summary, todo %></td>
-     <td height="30", width="100"><%= todo.owner  %></td>
-     <td height="30", width="100"><%= todo.sts  %></td>
+     <td height="30", width="50"><%= todo.id %></td>
+     <td height="30", width="120"><%= link_to todo.summary, todo %></td>
+     <td height="30", width="100"><%= todo.user.user_name %></td>
+     <td height="30", width="90"><%= todo.sts  %></td>
      <td height="30", width="100"><%= todo.enddate  %></td>
-     <td>
-       <%= link_to '編集', edit_todo_path(todo) %> |
-       <%= link_to '削除', todo_path(todo), :method => :delete, data: { confirm: 'Are you sure?' } %>
-    </td>
   </tr>
 <% end %>
 </table>
@@ -34,4 +29,7 @@
 
 <br />
 
-<%= link_to '新規作成', url_for(:controller => "todos", :action => "new", :id => @meeting)%>
+<%= link_to '[新規作成]', url_for( :controller => "todos", :action => "new", :mid => params[:meeting_id]) %> | 
+<%= link_to '[戻る]', url_for( :controller => "meetings", :action => "show", :id => params[:meeting_id]) %>
+
+

@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<% @page_title = "ToDo詳細" %>
+<h1><%= @page_title  %></h1>
+
+<table class="attr">
+  <tr>
+    <th width="150">ID：</th>
+    <td><%= @todo.id %></td>
+  </tr>
+  <tr>
+    <th>ミーティング名：</th>
+    <td><%= @todo.meeting.title %></td>
+  </tr>
+
+  <tr>
+    <th>ToDo概要：</th>
+    <td><%= @todo.summary %></td>
+  </tr>
+  <tr>
+    <th valign="top">詳細：</th>
+    <td valign="top"><%= simple_format(@todo.detail) %></td>
+  </tr>
+  <tr>
+    <th>担当者：</th>
+    <td><%= @todo.user.user_name %></td>
+  </tr>
+  <tr>
+    <th>期限：</th>
+    <td><%= @todo.enddate %></td>
+  </tr>
+  <tr>
+    <th>ステータス：</th>
+    <td><%= @todo.sts %></td>
+  </tr>
+  <tr>
+    <th valign="top">備考：</th>
+    <td valign="top"><%= simple_format(@todo.biko) %></td>
+  </tr>
+
+
+</table>
+
+<%= link_to '[編集]', edit_todo_path(@todo) %> |
+
+
+<%= link_to '[削除]', @todo, method: :delete, data: { confirm: "削除しますか?" } %> |
+
+
+<%= link_to '[一覧に戻る]', url_for( :controller => 'todos', :action => 'index', :meeting_id => @todo.meeting_id) %>
+
+<%= javascript_include_tag 'todos' %>

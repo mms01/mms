@@ -2,11 +2,9 @@ class TodosController < ApplicationController
   # GET /todo
   # GET /todo.json
   def index
- #    @meeting_id = params[:id]
-    @todos = Todo.all
-    @meeting = Meeting.find_by_id(params[:id])
+    @user = User.all
+    @todos = Todo.where(meeting_id: params[:meeting_id])
 
- 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @todo }
@@ -16,28 +14,19 @@ class TodosController < ApplicationController
   # GET /todo/1
   # GET /todo/1.json
   def show
-    fstr = params[:id]
-    @datas = []
-    @datas = todo.where("id='" + fstr + "'")
-    
-    if @datas.exists? then
-      @todo = Todo.find(params[:id])
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: @todo }
-      end
-    else
-        redirect_to :action => "new", :params => {'id' => fstr}
+    @todo = Todo.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @todo }
     end
-
-
   end
 
   # GET /todo/new
   # GET /todo/new.json
   def new
-    @meeting = Meeting.find(params[:id])
-    @usre = User.all
+    @user = User.all
+    @meeting = Meeting.find_by_id(params[:id])
     @todo = Todo.new
     respond_to do |format|
       format.html # new.html.erb
@@ -47,12 +36,15 @@ class TodosController < ApplicationController
 
   # GET /todo/1/edit
   def edit
+    @user = User.all
+    @metting = Meeting.all
     @todo = Todo.find(params[:id])
   end
 
   # POST /todo
   # POST /todo.json
   def create
+    @user = User.all    
     @todo = Todo.new(params[:todo])
 
     respond_to do |format|
