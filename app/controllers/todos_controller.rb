@@ -49,7 +49,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to @todo, notice: 'ToDo was successfully created.' }
+        format.html { redirect_to @todo, notice: 'ToDoを作成しました' }
         format.json { render json: @todo, status: :created, location: @todo }
       else
         format.html { render action: "new" }
@@ -65,7 +65,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
-        format.html { redirect_to @todo, notice: 'ToDo was successfully updated.' }
+        format.html { redirect_to @todo, notice: 'ToDoを更新しました' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -81,11 +81,9 @@ class TodosController < ApplicationController
     @todo.destroy
 
     respond_to do |format|
-      format.html { redirect_to todo_url }
+      format.html { redirect_to :controller => 'todos', :action => 'index', :meeting_id => @todo.meeting_id }
       format.json { head :no_content }
     end
   end
-
-
 
 end
