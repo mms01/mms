@@ -1,0 +1,2 @@
+module AbolitionUsersHelper
+end

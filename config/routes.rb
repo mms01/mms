@@ -1,4 +1,6 @@
 Mms::Application.routes.draw do
+  get "abolition_users/index"
+
   get "meeting_notification/index"
   post "meeting_notification/notify"
 

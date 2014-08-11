@@ -7,6 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if(params['role_key'] == "admin" || params['role_key'] == "user") then
       params['user']['role'] = params['role_key']
       params['user']['available'] = true
+      puts "################################################"
       puts @user
       super
     else
