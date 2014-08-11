@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
                   :sts,
                   :atached,
                   :purpose,
-                  :available
+                  :delete_flag
 
   belongs_to :user, foreign_key: "manager_id"
 

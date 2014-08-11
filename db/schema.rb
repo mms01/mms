@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140728073357) do
+ActiveRecord::Schema.define(:version => 20140811050712) do
 
   create_table "meetings", :force => true do |t|
     t.string   "title"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20140728073357) do
     t.text     "purpose"
     t.string   "sts"
     t.binary   "attached"
-    t.boolean  "available",      :default => true
+    t.boolean  "delete_flag",      :default => false
   end
 
   create_table "todos", :force => true do |t|
