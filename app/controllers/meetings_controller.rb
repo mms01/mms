@@ -46,6 +46,14 @@ class MeetingsController < ApplicationController
       @minute_id = "なし"
       @exist_minute = 0
     end
+    
+    @datas = []
+    @datas = Todo.where("meeting_id='" + params[:id] + "'")
+    if @datas.exists? then
+      @exist_todo = 1
+    else
+      @exist_todo = 0
+    end
 
     respond_to do |format|
       format.html # show.html.erb
