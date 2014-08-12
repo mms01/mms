@@ -70,7 +70,7 @@ class MeetingsController < ApplicationController
     end
 
     @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id').where('project_users.user_id = ?', current_user.id).order("name ASC")
-    @users = User.where("id  > 0").order("email ASC")
+    @users = User.where("id  > 0").where("available=TRUE").order("user_name ASC")
 
 #    @meeting = Meeting.new
 #
@@ -87,7 +87,7 @@ class MeetingsController < ApplicationController
     @notice = ""
     
     @meeting = Meeting.find(params[:id])
-    @users = User.where("id  > 0").order("email ASC")
+    @users = User.where("id  > 0").where("available=TRUE").order("user_name ASC")
     
     @current_user_idx = 0
     @users.each do |user|
@@ -108,7 +108,7 @@ class MeetingsController < ApplicationController
     @notice = ""
     @meeting = Meeting.new(params[:meeting])
     @projects = Project.where("id  > 0").order("name ASC")
-    @users = User.where("id  > 0").order("email ASC")
+    @users = User.where("id  > 0").where("available=TRUE").order("user_name ASC")
 
     respond_to do |format|
       if @meeting.save
@@ -131,7 +131,7 @@ class MeetingsController < ApplicationController
     
     @meeting = Meeting.find(params[:id])
     @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id').where('project_users.user_id = ?', current_user.id).order("name ASC")
-    @users = User.where("id  > 0").order("email ASC")
+    @users = User.where("id  > 0").order("user_name ASC")
 
     respond_to do |format|
       if @meeting.update_attributes(params[:meeting])
