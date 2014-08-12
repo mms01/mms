@@ -56,4 +56,4 @@
 
 
 <%= link_to '[詳細に戻る]', @todo %> |
-<%= link_to '[一覧に戻る]', todos_path %>
+<%= link_to '[一覧に戻る2]', url_for( :controller => 'todos', :action => 'index', :meeting_id => @todo.meeting_id) %>
