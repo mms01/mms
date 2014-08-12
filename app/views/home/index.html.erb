@@ -1,7 +1,6 @@
 <div class="menu">
 	<h2>■MENU</h2>
 	<li><%= link_to 'ミーティング管理', { :controller => 'meetings', :action => 'index'}  %></li>
-	<li><%= link_to '議事録管理（将来的にミーティングに統合？）', { :controller => 'minutes', :action => 'index'}  %></li>
 	<br>
     <% if current_user.role == "admin" then %>
 	<h2>■管理者MENU</h2>
