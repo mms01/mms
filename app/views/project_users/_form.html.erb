@@ -14,11 +14,15 @@
   <table>
     <tr>
       <th>プロジェクト</th>
-      <td><%= f.collection_select :project_id, Project.all, :id, :name %></td>
+      <td><%= f.collection_select :project_id, 
+      			Project.where('projects.delete_flag = false').order('projects.name ASC'), 
+      			:id, :name %></td>
     </tr>
     <tr>
       <th>ユーザ</th>
-      <td><%= f.collection_select :user_id, User.all, :id, :user_name %></td>
+      <td><%= f.collection_select :user_id, 
+      			User.where('users.available = true').order('users.user_name ASC'), 
+      			:id, :user_name %></td>
     </tr>
   </table>
 
