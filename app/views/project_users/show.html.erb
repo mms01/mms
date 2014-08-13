@@ -12,7 +12,4 @@
   <%= @project_user.user.user_name if @project_user.user %>
 </p>
 
-
-<%= link_to '[編集]', edit_project_user_path(@project_user) %> |
-<%= link_to '[削除]', @project_user, method: :delete, data: { confirm: '削除しますか?' }  %> |
 <%= link_to '[一覧に戻る]', project_users_path %>
