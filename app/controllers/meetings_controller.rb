@@ -41,7 +41,7 @@ class MeetingsController < ApplicationController
     #@meeting = Meeting.find(params[:id], :include => [:user_id, :email])
     
     @datas = []
-    @datas = Minute.where("meeting_id='" + params[:id] + "'")
+    @datas = Minute.where("meeting_id='" << params[:id] << "'")
     if @datas.exists? then
       @minute_id = @datas[0].id
       @exist_minute = 1
@@ -51,7 +51,7 @@ class MeetingsController < ApplicationController
     end
     
     @datas = []
-    @datas = Todo.where("meeting_id='" + params[:id] + "'")
+    @datas = Todo.where("meeting_id='" << params[:id] << "'")
     if @datas.exists? then
       @exist_todo = 1
     else
