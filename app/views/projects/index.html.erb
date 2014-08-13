@@ -20,7 +20,8 @@
      <td height="30", width="100"><%= project.end_date  %></td>
      <td height="30", width="100"><%= project.user.user_name if project.user %></td>
      <td height="30", width="100"><%= project.sts  %></td>
-     <td height="30", width="100"><%= check_box_tag project.delete_flag, :disabled => true  %></td>
+     <%# check_box_tag (idとname), value, checkedか否か, オプション  %>
+     <td height="30", width="100"><%= check_box_tag 'delete_flag', project.delete_flag, project.delete_flag, :disabled => true %></td>
   </tr>
 <% end %>
 </table>

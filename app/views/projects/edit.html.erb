@@ -1,6 +1,70 @@
 <h1>プロジェクト編集</h1>
 
-<%= render 'form' %>
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "プロジェクト名" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_date, "開始日" %><br />
+    <%= f.date_select :start_date,
+             start_year: 2001, end_year: 2100,
+             use_month_numbers: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date, "終了日" %><br />
+    <%= f.date_select :end_date,
+             start_year: 2001, end_year: 2100,
+             use_month_numbers: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :manager_id, "管理者" %><br />
+    <%= f.collection_select :manager_id, @user, :id, :user_name, :include_blank => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :purpose, "目的" %><br />
+    <%= f.text_area :purpose %>
+  </div>
+
+  <div class="field">
+    <% options = ["計画中", "稼働中", "完了", "保留"] %>
+    <%= f.label :sts, "ステータス" %><br />
+    <%= f.select :sts, options %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :delete_flag, "削除 " %>
+    <%= f.check_box :delete_flag %>
+  </div>
+
+<!--
+  <div class="field">
+    添付ファイル<br />
+   <%= f.file_field :upload_file %>
+  </div>
+-->
+
+  <div class="actions">
+    <%= f.submit "更新" %>
+  </div>
+<% end %>
+
 
 <%= link_to '[詳細に戻る]', @project %> |
 <%= link_to '[一覧に戻る]', projects_path %>

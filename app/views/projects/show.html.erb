@@ -37,12 +37,15 @@
   
   <tr>
     <th>削除</th>
-    <td><%= check_box_tag @project.delete_flag, :disabled => true  %></td>
+    <%# check_box_tag (idとname), value, checkedか否か, オプション  %>
+    <td><%= check_box_tag 'delete_flag', @project.delete_flag, @project.delete_flag, :disabled => true %></td>
   </tr>
 
 </table>
 
+<% if @project.delete_flag == false then %>
 <%= link_to '[編集]', edit_project_path(@project) %> |
+<% end %>
 
 <!--
 <a href="javascript:void(0)" onclick="doDelete(<%= @project.id %>);">[削除]</a> |
