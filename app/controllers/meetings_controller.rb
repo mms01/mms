@@ -77,7 +77,8 @@ class MeetingsController < ApplicationController
       end
     end
 
-    @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id').where('project_users.user_id = ?', current_user.id).order("name ASC")
+    @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id')
+    					.where('project_users.user_id = ?', current_user.id).order("name ASC")
     @users = User.where("id  > 0").where("available=TRUE").order("user_name ASC")
 
 #    @meeting = Meeting.new
@@ -95,7 +96,10 @@ class MeetingsController < ApplicationController
     @notice = ""
     
     @meeting = Meeting.find(params[:id])
-    @users = User.where("id  > 0").where("available=TRUE").order("user_name ASC")
+    @users = User.joins('INNER JOIN project_users ON project_users.user_id = users.id')
+    			.where("users.id  > 0").where("users.available=TRUE")
+    			.where('project_users.project_id = ?', @meeting.project_id)
+    			.order("users.user_name ASC")
     
     @current_user_idx = 0
     @users.each do |user|
@@ -229,4 +233,19 @@ class MeetingsController < ApplicationController
    render "index"
     
   end
+  
+#  def get_ajax
+#    @re = Meeting.where("meetings.id  > 0")
+#    #@re = User.first(:order => "RANDOM()")
+#    #@result = "<ol>" + "<li>" + @re.name + "</ol>"
+  
+#    if @re.exists? then
+#      @exist_res = 1
+#    else
+#      @exist_res = 0
+#    end
+    
+#    @exist_res = 1
+#  end
+  
 end
