@@ -11,7 +11,9 @@ class MeetingsController < ApplicationController
     @page_num = 10
     
     @meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+    						.joins('INNER JOIN projects ON project_users.project_id = projects.id')
     						.where('project_users.user_id = ?', current_user.id)
+    						.where('projects.delete_flag = FALSE')
     						.order("meeting_date DESC").order("start_time DESC")
     						.offset(@page * @page_num).limit(@page_num)
     @record_count = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
@@ -19,6 +21,7 @@ class MeetingsController < ApplicationController
     						
     @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id')
     						.where('project_users.user_id = ?', current_user.id)
+    						.where('projects.delete_flag = FALSE')
     						.order("name ASC")
 
     respond_to do |format|
