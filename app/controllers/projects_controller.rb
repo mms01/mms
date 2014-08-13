@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
-    @user = User.all
+    @user = User.where("users.id  > 0").where("users.available=TRUE").order("users.user_name ASC")
     @project = Project.new
     respond_to do |format|
       format.html # new.html.erb
@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @user = User.all
+    @user = User.where("users.id  > 0").where("users.available=TRUE").order("users.user_name ASC")
     @project = Project.find(params[:id])
   end
 
@@ -74,7 +74,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
-    @user = User.all
+    @user = User.where("users.id  > 0").where("users.available=TRUE").order("users.user_name ASC")
 
     @project = Project.find(params[:id])
 
