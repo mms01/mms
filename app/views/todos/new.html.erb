@@ -34,7 +34,7 @@
     <tr>
       <th><%= f.label :owner, '担当者' %></th>
       <td>
-        <%= f.collection_select :owner, @user, :id, :user_name, :include_blank => true %>
+        <%= f.collection_select :owner, @users, :id, :user_name, :include_blank => true %>
       </td> 
     </tr>
 

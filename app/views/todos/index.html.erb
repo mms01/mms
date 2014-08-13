@@ -29,7 +29,7 @@
 
 <br />
 
-<%= link_to '[新規作成]', url_for( :controller => "todos", :action => "new", :mid => params[:meeting_id]) %> | 
+<%= link_to '[新規作成]', url_for( :controller => "todos", :action => "new", :meeting_id => params[:meeting_id]) %> | 
 <%= link_to '[ミーティング詳細に戻る]', url_for( :controller => "meetings", :action => "show", :id => params[:meeting_id]) %>
 
 

@@ -27,7 +27,7 @@
     <tr>
       <th><%= f.label :owner, '担当者' %></th>
       <td>
-        <%= f.collection_select :owner, @user, :id, :user_name, :include_blank => true %>
+        <%= f.collection_select :owner, @users, :id, :user_name, :include_blank => true %>
       </td> 
     </tr>
 
@@ -56,4 +56,4 @@
 
 
 <%= link_to '[詳細に戻る]', @todo %> |
-<%= link_to '[一覧に戻る2]', url_for( :controller => 'todos', :action => 'index', :meeting_id => @todo.meeting_id) %>
+<%= link_to '[一覧に戻る]', url_for( :controller => 'todos', :action => 'index', :meeting_id => @todo.meeting_id) %>
