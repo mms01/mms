@@ -13,8 +13,6 @@
   <tr style="background-color:<%= cycle('FFffFF','#FFff99') %>">
       <td height="30"><%= project_user.project.name if project_user.project %>&nbsp;&nbsp;&nbsp;&nbsp</td>
       <td height="30"><%= project_user.user.user_name if project_user.user %>&nbsp;&nbsp;&nbsp;&nbsp</td>
-    <td><%= link_to 'Show', project_user %>&nbsp;&nbsp;&nbsp;&nbsp</td>
-    <td><%= link_to 'Edit', edit_project_user_path(project_user) %>&nbsp;&nbsp;&nbsp;&nbsp</td>
 <% if false %>
     <td><%= link_to 'Destroy', project_user, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;&nbsp;&nbsp;&nbsp</td>
 <% end %>

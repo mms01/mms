@@ -5,7 +5,11 @@
     @title = "プロジェクトユーザ一覧"
     @catch_phrase = "　　プロジェクトとユーザの紐付けを行います。"
 
-    @project_users = ProjectUser.all
+    #@project_users = ProjectUser.all
+    @project_users = ProjectUser.joins('INNER JOIN projects ON project_users.project_id = projects.id')
+    					.joins('INNER JOIN users ON project_users.user_id = users.id')
+    					.where('projects.delete_flag = false').where('users.available = true')
+    					.order('projects.name ASC').order('users.user_name ASC')
 
     respond_to do |format|
       format.html # index.html.erb
