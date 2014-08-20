@@ -13,4 +13,12 @@ function doDelete(id, exist_minute, exist_todo) {
   }
 }
 
+jQuery(function() {
+  $('#meeting_project_id').change(function() {
+      var project_id = $('#meeting_project_id').val();
+      $.get("meeting_users_select?project_id=" + project_id);
+  });
+});
+
+
 

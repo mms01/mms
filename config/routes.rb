@@ -14,6 +14,7 @@ Mms::Application.routes.draw do
 
   get "meetings/delete"
   get "meetings/index"
+  match "meetings/meeting_users_select"
   resources :meetings
 
   resources :projects
