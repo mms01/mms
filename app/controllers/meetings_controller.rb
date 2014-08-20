@@ -81,10 +81,18 @@ class MeetingsController < ApplicationController
     end
 
     @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id')
-    					.where('project_users.user_id = ?', current_user.id).order("name ASC")
-    @users = User.where("id  > 0").where("available=TRUE").order("user_name ASC")
+    					.where('project_users.user_id = ?', current_user.id)
+    					.where('projects.delete_flag = FALSE').order("name ASC")
     
-        @zzz_msg = "aaa"
+    if @projects.exists? then			
+      @users = User.joins('INNER JOIN project_users ON project_users.user_id = users.id')
+    			.where("users.id  > 0").where("users.available=TRUE")
+    			.where('project_users.project_id = ?', @projects.first.id)
+    			.order("users.user_name ASC")
+    else
+      @users = []
+    end
+    
 
 #    @meeting = Meeting.new
 #
@@ -190,14 +198,6 @@ class MeetingsController < ApplicationController
     
     @page = params[:page].to_i
     @page_num = 10
-
-#    if params[:project_id] == ""
-      # プロジェクトが指定されていない場合
-#      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ?', "%"+params[:title]+"%").order("meeting_date DESC").order("start_time DESC")
-#    else 
-      # プロジェクトが指定されている場合
-#      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ? and meetings.project_id = ?', "%"+params[:title]+"%", params[:project_id]).order("meeting_date DESC").order("start_time DESC")
-#    end
 
 	if params[:project_id] == ""
       # プロジェクトが指定されていない場合
