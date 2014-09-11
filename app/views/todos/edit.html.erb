@@ -1,3 +1,4 @@
+<h1>ToDo編集</h1>
 
 <%= form_for(@todo) do |f| %>
 
@@ -27,7 +28,7 @@
     <tr>
       <th><%= f.label :owner, '担当者' %></th>
       <td>
-        <%= f.collection_select :owner, @users, :id, :user_name, :include_blank => true %>
+        <%= f.collection_select :owner, @users, :id, :user_name %>
       </td> 
     </tr>
 

@@ -34,7 +34,7 @@
     <tr>
       <th><%= f.label :owner, '担当者' %></th>
       <td>
-        <%= f.collection_select :owner, @users, :id, :user_name, :include_blank => true %>
+        <%= f.collection_select :owner, @users, :id, :user_name %>
       </td> 
     </tr>
 
@@ -61,7 +61,7 @@
   </div>
   
   <div class="field">
-    <%= f.hidden_field :meeting_id, :value => params[:mid] %>
+    <%= f.hidden_field :meeting_id, :value => params[:meeting_id] %>
   </div>
 
 

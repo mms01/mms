@@ -1,7 +1,7 @@
 class Todo < ActiveRecord::Base
 
-  validates :owner, :summary, presence: true
-
+#  validates :owner, :summary, presence: true
+  validates :summary, presence: true
 
   attr_accessible :id,
                   :created_at,

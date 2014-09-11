@@ -5,7 +5,7 @@ class TodosController < ApplicationController
   # GET /todo.json
   def index
     #@user = User.all
-    @todos = Todo.where(meeting_id: params[:meeting_id])
+    @todos = Todo.where(meeting_id: params[:meeting_id]).order("enddate ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,6 +17,7 @@ class TodosController < ApplicationController
   # GET /todo/1.json
   def show
     @todo = Todo.find(params[:id])
+    @meeting = Meeting.find_by_id(params[:meeting_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,7 +33,7 @@ class TodosController < ApplicationController
     		.where('users.id  > 0').where('users.available=TRUE')
     		.where('project_users.project_id = ?', @meeting.project_id)
     		.order('users.user_name ASC')
-    
+
     
     @todo = Todo.new
     respond_to do |format|
@@ -46,7 +47,7 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
     @meeting = Meeting.find_by_id(@todo.meeting_id)
     
-    @users = User.joins('INNER JOIN project_users ON project_users.user_id = users.id')
+    @users = User.joins('INNER JOIN project_users ON users.id = project_users.user_id')
     		.where('users.id  > 0').where('users.available=TRUE')
     		.where('project_users.project_id = ?', @meeting.project_id)
     		.order('users.user_name ASC')
