@@ -16,8 +16,12 @@ class MeetingsController < ApplicationController
     						.where('projects.delete_flag = FALSE')
     						.order("meeting_date DESC").order("start_time DESC")
     						.offset(@page * @page_num).limit(@page_num)
+
     @record_count = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
-    						.where('project_users.user_id = ?', current_user.id).count
+							.joins('INNER JOIN projects ON project_users.project_id = projects.id')
+    						.where('project_users.user_id = ?', current_user.id)
+    						.where('projects.delete_flag = FALSE')
+    						.count
     						
     @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id')
     						.where('project_users.user_id = ?', current_user.id)
@@ -81,8 +85,18 @@ class MeetingsController < ApplicationController
     end
 
     @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id')
-    					.where('project_users.user_id = ?', current_user.id).order("name ASC")
-    @users = User.where("id  > 0").where("available=TRUE").order("user_name ASC")
+    					.where('project_users.user_id = ?', current_user.id)
+    					.where('projects.delete_flag = FALSE').order("name ASC")
+    
+    if @projects.exists? then			
+      @users = User.joins('INNER JOIN project_users ON project_users.user_id = users.id')
+    			.where("users.id  > 0").where("users.available=TRUE")
+    			.where('project_users.project_id = ?', @projects.first.id)
+    			.order("users.user_name ASC")
+    else
+      @users = []
+    end
+    
 
 #    @meeting = Meeting.new
 #
@@ -189,14 +203,6 @@ class MeetingsController < ApplicationController
     @page = params[:page].to_i
     @page_num = 10
 
-#    if params[:project_id] == ""
-      # プロジェクトが指定されていない場合
-#      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ?', "%"+params[:title]+"%").order("meeting_date DESC").order("start_time DESC")
-#    else 
-      # プロジェクトが指定されている場合
-#      @meetings = Meeting.where('meetings.id  > 0 and meetings.title like ? and meetings.project_id = ?', "%"+params[:title]+"%", params[:project_id]).order("meeting_date DESC").order("start_time DESC")
-#    end
-
 	if params[:project_id] == ""
       # プロジェクトが指定されていない場合
 	  @meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
@@ -237,18 +243,28 @@ class MeetingsController < ApplicationController
     
   end
   
-#  def get_ajax
-#    @re = Meeting.where("meetings.id  > 0")
-#    #@re = User.first(:order => "RANDOM()")
-#    #@result = "<ol>" + "<li>" + @re.name + "</ol>"
   
-#    if @re.exists? then
-#      @exist_res = 1
-#    else
-#      @exist_res = 0
-#    end
+  # jQuery内からRailsのActionを叩く
+  # http://qiita.com/somewhatgood@github/items/113773747a6faa800366
+  
+  # プルダウンの連動
+  # http://itmemojp.blogspot.jp/2012/10/rails.html ←記述内容に誤りあり
+  # 関連するファイル
+  #  views/meetings/new.html.erb : 連動される側のコンボボックスのHTMLを外出し
+  #  views/meetings/_meeting_users_select.html.erb : 外出ししたコンボボックス。部分ファイルなのでファイル名先頭にアンダースコアをつける
+  #  assets/javascripts/meetings.js : jQueryを記述。連動トリガーのコンボボックスの変更を感知してアクションを呼び出す。application.js だと動かなかった…
+  #  controlloers/meetings_controller.rb : このファイル。対象Userを絞り込む。
+  #  views/meetings/meeting_users_select.js.erb : 連動される側のプルダウンを上書きする。こちらはファイル名の先頭にアンダースコアがつかない
+  #  routes.rb (mms/config配下) : "resources :meetings"より前に、"get meetings/meeting_users_select"を記述。getのかわりに matchでも構わない
+
+  
+  def meeting_users_select
+    @users = User.joins('INNER JOIN project_users ON project_users.user_id = users.id')
+    			.where("users.id  > 0").where("users.available=TRUE")
+    			.where('project_users.project_id = ?', params[:project_id])
+    			.order("users.user_name ASC")
     
-#    @exist_res = 1
-#  end
+    render
+  end
   
 end

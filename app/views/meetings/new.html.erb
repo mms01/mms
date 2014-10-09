@@ -1,10 +1,6 @@
 <h1><%= @title  %></h1>
+
 <%= form_for(@meeting) do |f| %>
-<%
-=begin %>
-<%= form_for(@meeting, :url => {:action => 'new'}) do |f| %>
-<%
-=end %>
 
   <% if @meeting.errors.any? %>
     <div id="error_explanation">
@@ -18,7 +14,7 @@
     </div>
   <% end %>
   
-  <table>
+  <table id="new_table">
     <tr>
       <th>プロジェクト</th>
       <td>
@@ -53,6 +49,7 @@
     <tr>
       <th>主催者</th>
       <td>
+<<<<<<< HEAD
       
       
 		<%= render partial: '主催者', locals: {project_id: @projects.first.id } %>
@@ -60,6 +57,9 @@
         <%= select_tag 'meeting[user_id]', options_from_collection_for_select(@users, :id, :user_name) %>
 -->
 
+=======
+        <%= render 'meeting_users_select', {:f => f} %>
+>>>>>>> a73552c6b4f1f84c141e830bad61e1f5e1358edd
       </td> 
     </tr>
     <tr>
