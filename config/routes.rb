@@ -5,6 +5,7 @@ Mms::Application.routes.draw do
   post "meeting_notification/notify"
 
   devise_for :users, :controllers => {
+#    :sessions => 'users/sessions',
     :registrations => 'users/registrations'
   }
 

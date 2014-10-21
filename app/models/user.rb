@@ -12,4 +12,11 @@ class User < ActiveRecord::Base
   has_many :project_users
   has_many :todos, foreign_key: "owner"
 
+    def self.find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+#puts     where(conditions).where("available = TRUE").first
+      where(conditions).where("available = TRUE").first
+    end
+
+
 end
