@@ -53,7 +53,7 @@
 
     respond_to do |format|
       if @project_user.save
-        format.html { redirect_to @project_user, notice: 'Project user was successfully created.' }
+        format.html { redirect_to @project_user, notice: '作成が完了しました！' }
         format.json { render json: @project_user, status: :created, location: @project_user }
       else
         format.html { render action: "new" }
@@ -69,7 +69,7 @@
 
     respond_to do |format|
       if @project_user.update_attributes(params[:project_user])
-        format.html { redirect_to @project_user, notice: 'Project user was successfully updated.' }
+        format.html { redirect_to @project_user, notice: '更新が完了しました！' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

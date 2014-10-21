@@ -14,7 +14,7 @@
   </tr>
 
 <% @projects.each do |project| %>
-  <tr>
+  <tr style="background-color:<%= cycle('FFffFF','#FFff99') %>">
      <td height="30", width="100"><%= link_to project.name, project %></td>
      <td height="30", width="100"><%= project.start_date  %></td>
      <td height="30", width="100"><%= project.end_date  %></td>
