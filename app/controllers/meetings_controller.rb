@@ -10,13 +10,32 @@ class MeetingsController < ApplicationController
     @page = params[:page].to_i
     @page_num = 10
     
-    @meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
-    						.joins('INNER JOIN projects ON project_users.project_id = projects.id')
+    ##@meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+    ##						.joins('INNER JOIN projects ON project_users.project_id = projects.id')
+    ##						.where('project_users.user_id = ?', current_user.id)
+    ##						.where('projects.delete_flag = FALSE')
+    ##						.order("meeting_date DESC").order("start_time DESC")
+    ##						.offset(@page * @page_num).limit(@page_num)
+    						
+    #@meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+    #						.joins('INNER JOIN projects ON project_users.project_id = meetings.id')
+    #						.where('project_users.user_id = ?', current_user.id)
+    #						.where('projects.delete_flag = FALSE')
+    #						.order("meeting_date DESC").order("start_time DESC")
+    #						.offset(@page * @page_num).limit(@page_num)
+
+	@meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
     						.where('project_users.user_id = ?', current_user.id)
-    						.where('projects.delete_flag = FALSE')
     						.order("meeting_date DESC").order("start_time DESC")
     						.offset(@page * @page_num).limit(@page_num)
+    						
 
+    ##@record_count = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+	##						.joins('INNER JOIN projects ON project_users.project_id = projects.id')
+    ##						.where('project_users.user_id = ?', current_user.id)
+    ##						.where('projects.delete_flag = FALSE')
+    ##						.count
+    
     @record_count = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
 							.joins('INNER JOIN projects ON project_users.project_id = projects.id')
     						.where('project_users.user_id = ?', current_user.id)
@@ -209,17 +228,26 @@ class MeetingsController < ApplicationController
     						.where('project_users.user_id = ?  and meetings.title like ?', current_user.id, "%"+params[:title]+"%")
     						.order("meeting_date DESC").order("start_time DESC")
     						.offset(@page * @page_num).limit(@page_num)
-    
+
+      @record_count = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+							.joins('INNER JOIN projects ON project_users.project_id = projects.id')
+    						.where('project_users.user_id = ?', current_user.id)
+    						.where('projects.delete_flag = FALSE')
+    						.count
+
     else 
       # プロジェクトが指定されている場合
       @meetings = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
     						.where('project_users.user_id = ?  and meetings.title like ? and meetings.project_id = ?', current_user.id, "%"+params[:title]+"%", params[:project_id])
     						.order("meeting_date DESC").order("start_time DESC")
     						.offset(@page * @page_num).limit(@page_num)
+
+      @record_count = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
+							.joins('INNER JOIN projects ON project_users.project_id = projects.id')
+    						.where('project_users.user_id = ?  and meetings.title like ? and meetings.project_id = ?', current_user.id, "%"+params[:title]+"%", params[:project_id])
+    						.where('projects.delete_flag = FALSE')
+    						.count
     end
-    
-    @record_count = Meeting.where("meetings.id  > 0").joins('INNER JOIN project_users ON project_users.project_id = meetings.project_id')
-    						.where('project_users.user_id = ?', current_user.id).count
     						
     @projects = Project.joins('INNER JOIN project_users ON project_users.project_id = projects.id')
     						.where('project_users.user_id = ?', current_user.id)
